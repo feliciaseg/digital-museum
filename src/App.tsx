@@ -1,14 +1,22 @@
 import "./App.css";
 import React from "react";
 
+interface Props {
+}
 
-class App extends React.Component {
-  constructor(props) {
+interface State {
+data: {},
+isLoaded: boolean,
+error: string,
+
+}
+class App extends React.Component <Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      data: {},
-      isLoaded: false,
-      error: "",
+    data: {},
+    isLoaded: false,
+    error: ""
     };
 
     this.getRecipe = this.getRecipe.bind(this);
