@@ -1,7 +1,6 @@
 import React from "react";
 
-import { CSSProperties } from "react";
-import Landing from "../components/landing";
+import Landing from "../components/SPlanding";
 
 interface Props {}
 
@@ -10,11 +9,7 @@ interface State {
   isLoaded: boolean;
   error: string;
 }
-const container: CSSProperties = {
-  flex: 1,
-  height: "30.5rem",
-  backgroundColor: "#FAFF70",
-};
+
 class StartPage extends React.Component<Props, State> {
   // constructor(props: Props) {
   //   super(props);

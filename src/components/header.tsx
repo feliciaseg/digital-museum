@@ -3,6 +3,8 @@ import { CSSProperties } from "react";
 
 const style: CSSProperties = {
   fontSize: 24,
+  fontWeight: 900,
+  color: "#262730",
   position: "absolute",
   top: 51,
   left: 95,
