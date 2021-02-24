@@ -1,5 +1,7 @@
 import React from "react";
-import Header from "../components/header";
+
+import { CSSProperties } from "react";
+import Landing from "../components/landing";
 
 interface Props {}
 
@@ -8,55 +10,22 @@ interface State {
   isLoaded: boolean;
   error: string;
 }
-
+const container: CSSProperties = {
+  flex: 1,
+  height: "30.5rem",
+  backgroundColor: "#FAFF70",
+};
 class StartPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      data: {},
-      isLoaded: false,
-      error: "",
-    };
+  // constructor(props: Props) {
+  //   super(props);
 
-    this.getRecipe = this.getRecipe.bind(this);
-  }
-
-  componentDidMount() {
-    this.getRecipe();
-  }
-
-  getRecipe() {
-    fetch("https://www.rijksmuseum.nl/api/en/collection/SK-C-597?key=LbV0glgZ")
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          this.setState({
-            data: data,
-            isLoaded: true,
-            error: "",
-          });
-        },
-        () => {
-          this.setState({
-            isLoaded: true,
-            error: "error",
-          });
-        }
-      );
-  }
+  // }
 
   render() {
-    const { data, isLoaded, error } = this.state;
-    if (isLoaded) {
-      if (!error) {
-        console.log(data);
-        return <Header h="16rem" c="#FF9C5B"></Header>;
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
+    return (
+    <Landing/>
+
+    );
   }
 }
 
