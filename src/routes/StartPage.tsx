@@ -1,22 +1,21 @@
 import React from "react";
-import Header from "../components/header"
+import Header from "../components/header";
 
-interface Props {
-}
+interface Props {}
 
 interface State {
-data: {},
-isLoaded: boolean,
-error: string,
+  data: {};
+  isLoaded: boolean;
+  error: string;
 }
 
-class StartPage extends React.Component <Props, State> {
+class StartPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-    data: {},
-    isLoaded: false,
-    error: ""
+      data: {},
+      isLoaded: false,
+      error: "",
     };
 
     this.getRecipe = this.getRecipe.bind(this);
@@ -51,9 +50,7 @@ class StartPage extends React.Component <Props, State> {
     if (isLoaded) {
       if (!error) {
         console.log(data);
-        return (
-          <Header h = "16rem" c = "#FF9C5B"></Header>
-        )
+        return <Header h="16rem" c="#FF9C5B"></Header>;
       } else {
         return null;
       }
