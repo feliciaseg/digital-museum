@@ -11,10 +11,10 @@ export default function Card(props: Props) {
       style={{
         ...card,
         ...bgColor,
-        fontSize: props.fontSize === "large" ? "2rem" : "1.5rem",
+        fontSize: props.fontSize === "large" ? "2rem" :  "1.5rem",
       }}
     >
-      <img style={cardImage} src={imageSrc}></img>
+      <img style={cardImage} src={imageSrc} alt="img"></img>
       <p style={{ ...cardTitleStyle, ...css.title }}>{props.title}</p>
     </div>
   );

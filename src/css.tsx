@@ -26,3 +26,6 @@ export const yellowBg: CSSProperties = {
 export const beigeBg: CSSProperties = {
   backgroundColor: "#E2D0BA",
 };
+
+
+
