@@ -36,7 +36,7 @@ const container: CSSProperties = {
 };
 
 const cardContainer: CSSProperties = {
-  width: "30,5rem",
+  width: 488, //Can't be written in rem for some reason
   height: "41.5rem",
   flex: "0 0 auto",
   marginRight: "2.3rem",
