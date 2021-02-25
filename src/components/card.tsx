@@ -11,7 +11,7 @@ export default function Card(props: Props) {
       style={{
         ...card,
         ...bgColor,
-        fontSize: props.fontSize === "large" ? "2rem" : "1.5rem",
+        fontSize: props.fontSize === "large" ? "2rem" :  "1.5rem",
       }}
     >
       <img style={cardImage} src={imageSrc}></img>
