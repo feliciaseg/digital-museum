@@ -21,7 +21,6 @@ export default function Collection() {
           <Card color="blue" fontSize="large" title="Rembrandt Van Rijn" />
         </div>
       </div>
-     
     </div>
   );
 }

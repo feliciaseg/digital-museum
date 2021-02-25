@@ -22,7 +22,7 @@ export default function Landing() {
         </p>
         <div style={search}>
           <input style={input} type="text" />
-          <button style={button}>
+          <button style={button} onClick = {handleClick}>
             SEARCH <img src={arrow} alt="arrow" />
           </button>
         </div>

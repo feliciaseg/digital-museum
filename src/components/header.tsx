@@ -1,13 +1,12 @@
 import { CSSProperties } from "react";
 
-
 const style: CSSProperties = {
-  fontSize: 24,
+  fontSize: "1,5rem",
   fontWeight: 900,
   color: "#262730",
   position: "absolute",
-  top: 51,
-  left: 95,
+  top: "3.2rem",
+  left: "5.9rem",
 }
 
 interface Props {
