@@ -61,6 +61,7 @@ const cardWrapper: CSSProperties = {
 
 const h2: CSSProperties = {
   margin: 0,
+  fontWeight: 900,
   fontSize: "4rem",
   paddingLeft: "5.9rem",
 };
