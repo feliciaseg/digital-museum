@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { beigeBg } from "../css";
 import Card from "./card";
 
-export default function Collection() {
+export default function Collection(props: Props) {
   return (
     <div style={{ ...beigeBg, ...container }}>
       <h2 style={h2}>SOME OF OUR COLLECTIONS</h2>
@@ -23,6 +23,12 @@ export default function Collection() {
       </div>
     </div>
   );
+}
+
+/* ----- INTERFACE ----- */
+
+interface Props {
+  //Ta in props för title samt img-src?
 }
 
 /* ----- CSS ----- */
