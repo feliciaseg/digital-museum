@@ -1,16 +1,25 @@
 import React from "react";
+import getAPI from "../components/getAPI";
 import Header from "../components/header";
 import SearchBox from "../components/SPsearchBox";
 import SearchResult from "../components/SPsearchResult";
-import searchResult from "../components/SPsearchResult"
+//import searchResult from "../components/SPsearchResult"
 //import { RouteComponentProps } from "react-router-dom"
 
 interface Props {}
 
-interface State {}
+interface State {
+
+}
 
 class SearchPage extends React.Component<Props, State> {
+
+ 
+
+
+  
   render() {
+    console.log(this.state)
     return (
       <>
     <Header h="8.375rem" c="#009ad1"/>

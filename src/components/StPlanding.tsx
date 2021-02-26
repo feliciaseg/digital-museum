@@ -3,11 +3,19 @@ import Header from "./header";
 import arrow from "../assets/yellow-arrow.png";
 import { yellowBg } from "../css";
 import { Link } from "react-router-dom";
+import getAPI from "./getAPI";
+
+
+
 
 export default function Landing() {
   function handleClick() {
     console.log("button clicked");
+    
+    console.log("hello")
   }
+
+
 
   return (
     <div>
@@ -24,11 +32,11 @@ export default function Landing() {
         <div style={search}>
           <input style={input} type="text" />
 
-          <Link style={{ textDecoration: "none" }} to="/search">
+          {/* <Link style={{ textDecoration: "none" }} to="/search"> */}
             <button style={button} onClick={handleClick}>
               SEARCH <img src={arrow} alt="arrow" />
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
       <div style={{ ...yellowBg, ...yellowBox }} />
