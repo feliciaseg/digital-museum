@@ -45,6 +45,7 @@ const yellowBox: CSSProperties = {
 const h2: CSSProperties = {
   margin: 0,
   fontSize: "6rem",
+  lineHeight: 1.2,
   fontWeight: 900,
   color: "#262730",
 };
