@@ -11,7 +11,7 @@ export default function Card(props: Props) {
       style={{
         ...card,
         ...bgColor,
-        fontSize: props.fontSize === "large" ? "2rem" :  "1.5rem",
+        fontSize: props.fontSize + "rem",
       }}
     >
       <img style={cardImage} src={imageSrc} alt="img"></img>
@@ -43,7 +43,7 @@ function switchBgColor(color: string) {
 /* ----- INTERFACE ----- */
 
 interface Props {
-  fontSize: "large" | "small";
+  fontSize: number;
   color: "blue" | "orange" | "black" | "yellow" | "beige";
   title: string;
 }
@@ -54,6 +54,7 @@ const card: CSSProperties = {
   position: "relative",
   height: "100%",
   width: "100%",
+  zIndex: 100,
 };
 
 const cardImage: CSSProperties = {
