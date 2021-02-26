@@ -69,6 +69,7 @@ const cardImage: CSSProperties = {
 const cardTitleStyle: CSSProperties = {
   position: "absolute",
   margin: "0",
-  top: "calc(100% - 2rem)",
+  top: "calc(100% - 1.5rem)",
   padding: "0 1.5rem",
+  wordBreak: "break-word",
 };

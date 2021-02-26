@@ -7,6 +7,7 @@ import getAPI from "./getAPI";
 
 
 
+import Button from "../components/button";
 
 export default function Landing() {
   function handleClick() {
@@ -32,11 +33,18 @@ export default function Landing() {
         <div style={search}>
           <input style={input} type="text" />
 
-          {/* <Link style={{ textDecoration: "none" }} to="/search"> */}
-            <button style={button} onClick={handleClick}>
+          <Link style={{ textDecoration: "none" }} to="/search">
+            <Button
+              type="search"
+              text="SEARCH"
+              backgroundColor="black"
+              textColor="yellow"
+              fontSize={1.5}
+            />
+            {/* <button style={button} onClick={handleClick}>
               SEARCH <img src={arrow} alt="arrow" />
-            </button>
-          {/* </Link> */}
+            </button> */}
+          </Link>
         </div>
       </div>
       <div style={{ ...yellowBg, ...yellowBox }} />
@@ -53,6 +61,7 @@ const yellowBox: CSSProperties = {
 const h2: CSSProperties = {
   margin: 0,
   fontSize: "6rem",
+  lineHeight: 1.2,
   fontWeight: 900,
   color: "#262730",
 };
