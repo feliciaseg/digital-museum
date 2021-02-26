@@ -9,16 +9,16 @@ export default function Collection(props: Props) {
 
       <div style={cardWrapper}>
         <div style={cardContainer}>
-          <Card color="blue" fontSize="large" title="Rembrandt Van Rijn" />
+          <Card color="blue" fontSize={3} title="Rembrandt Van Rijn" />
         </div>
         <div style={cardContainer}>
-          <Card color="blue" fontSize="large" title="Rembrandt Van Rijn" />
+          <Card color="blue" fontSize={3} title="Rembrandt Van Rijn" />
         </div>
         <div style={cardContainer}>
-          <Card color="blue" fontSize="large" title="Rembrandt Van Rijn" />
+          <Card color="blue" fontSize={3} title="Rembrandt Van Rijn" />
         </div>
         <div style={cardContainer}>
-          <Card color="blue" fontSize="large" title="Rembrandt Van Rijn" />
+          <Card color="blue" fontSize={3} title="Rembrandt Van Rijn" />
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@ const cardWrapper: CSSProperties = {
   flexWrap: "nowrap",
   overflowX: "auto",
   overflowY: "hidden",
-  paddingTop: "2rem",
+  padding: "2rem 0 4rem 0",
 };
 
 const h2: CSSProperties = {

@@ -8,22 +8,22 @@ export default function SearchResult(props: Props) {
   return (
     <div style={{ ...container, ...yellowBg }}>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
       <div style={cardContainer}>
-        <Card color="orange" fontSize="large" title="Rembrandt Van Rijn" />
+        <Card color="orange" fontSize={3} title="Rembrandt Van Rijn" />
       </div>
     </div>
   );
