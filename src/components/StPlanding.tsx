@@ -1,13 +1,14 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import Header from "./header";
-import arrow from "../assets/arrow.png";
+import arrow from "../assets/yellow-arrow.png";
 import { yellowBg } from "../css";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
-  function handleClick () {
-  console.log("button clicked")
+  function handleClick() {
+    console.log("button clicked");
   }
-  
+
   return (
     <div>
       <Header h="16rem" c="#FF9C5B" />
@@ -22,16 +23,18 @@ export default function Landing() {
         </p>
         <div style={search}>
           <input style={input} type="text" />
-          <button style={button} onClick = {handleClick}>
-            SEARCH <img src={arrow} alt="arrow" />
-          </button>
+
+          <Link style={{ textDecoration: "none" }} to="/search">
+            <button style={button} onClick={handleClick}>
+              SEARCH <img src={arrow} alt="arrow" />
+            </button>
+          </Link>
         </div>
       </div>
-      <div style={{...yellowBg, ...yellowBox }}/>
+      <div style={{ ...yellowBg, ...yellowBox }} />
     </div>
   );
 }
-
 
 /* ----- CSS ----- */
 const yellowBox: CSSProperties = {
@@ -90,4 +93,3 @@ const button: CSSProperties = {
   alignItems: "center",
   justifyContent: "space-evenly",
 };
-

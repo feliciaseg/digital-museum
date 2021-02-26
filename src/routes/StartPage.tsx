@@ -1,7 +1,7 @@
 import React from "react";
 
-import Landing from "../components/SPlanding";
-import Collection from "../components/SPcollection";
+import Landing from "../components/StPlanding";
+import Collection from "../components/StPcollection";
 
 interface Props {}
 
@@ -19,10 +19,10 @@ class StartPage extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-    <Landing />
+      <>
+    <Landing/>
     <Collection />
-    </div>
+    </>
     );
   }
 }
