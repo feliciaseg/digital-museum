@@ -27,5 +27,22 @@ export const beigeBg: CSSProperties = {
   backgroundColor: "#E2D0BA",
 };
 
+export const blueTxt: CSSProperties = {
+  color: "#009AD1",
+};
 
+export const orangeTxt: CSSProperties = {
+  color: "#FF9C5B",
+};
 
+export const blackTxt: CSSProperties = {
+  color: "#262730",
+};
+
+export const yellowTxt: CSSProperties = {
+  color: "#FAFF70",
+};
+
+export const beigeTxt: CSSProperties = {
+  color: "#E2D0BA",
+};
