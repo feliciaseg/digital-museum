@@ -2,7 +2,7 @@ import React from "react";
 import { CSSProperties } from "react";
 // import { Link } from "react-router-dom";
 import { blackBg } from "../css";
-import arrow from "../assets/black-arrow.png";
+import Button from "./button";
 
 export default function SearchBox(props: Props) {
   function handleClick() {
@@ -14,9 +14,16 @@ export default function SearchBox(props: Props) {
       <div style={search}>
         <input style={{ ...blackBg, ...input }} type="text" />
         {/* <Link style = {{textDecoration: "none"}} to="/search"> */}
-        <button style={button} onClick={handleClick}>
+        {/* <button style={button} onClick={handleClick}>
           SEARCH <img src={arrow} alt="arrow" />
-        </button>
+        </button> */}
+        <Button
+          type="search"
+          text="search"
+          backgroundColor="orange"
+          textColor="black"
+          fontSize={1.2}
+        />
         {/* </Link> */}
       </div>
       <div style={text}>
