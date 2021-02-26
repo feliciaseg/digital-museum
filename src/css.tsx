@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
 
 export const title: CSSProperties = {
-  lineHeight: "100%",
+  lineHeight: 1.2,
   textAlign: "left",
-  fontWeight: "bolder",
+  fontWeight: 900,
   textTransform: "uppercase",
 };
 
