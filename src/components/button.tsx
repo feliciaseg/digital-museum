@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import translateColor from "../helper";
 
 export default function Button(props: Props) {
-  console.log(props);
+  //console.log(props);
   const backgroundColor = translateColor(props.backgroundColor);
   const textColor = translateColor(props.textColor);
   if (props.type === "search") {

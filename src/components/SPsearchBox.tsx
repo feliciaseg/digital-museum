@@ -1,6 +1,4 @@
-import React from "react";
 import { CSSProperties } from "react";
-// import { Link } from "react-router-dom";
 import { blackBg } from "../css";
 import arrow from "../assets/black-arrow.png";
 

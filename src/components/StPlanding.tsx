@@ -1,22 +1,11 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import Header from "./header";
-import arrow from "../assets/yellow-arrow.png";
 import { yellowBg } from "../css";
 import { Link } from "react-router-dom";
-import getAPI from "./getAPI";
-
-
-
 import Button from "../components/button";
 
 export default function Landing() {
-  function handleClick() {
-    console.log("button clicked");
-    
-    console.log("hello")
-  }
-
-
+  const [inputValue, setInputValue] = useState<string>("");
 
   return (
     <div>
@@ -31,9 +20,18 @@ export default function Landing() {
           your interest
         </p>
         <div style={search}>
-          <input style={input} type="text" />
-
-          <Link style={{ textDecoration: "none" }} to="/search">
+          <input
+            onChange={(event) => setInputValue(event.target.value)}
+            style={input}
+            type="text"
+          />
+          <Link
+            style={{ textDecoration: "none" }}
+            to={{
+              pathname: `/search`,
+              state: inputValue,
+            }}
+          >
             <Button
               type="search"
               text="SEARCH"
@@ -41,9 +39,6 @@ export default function Landing() {
               textColor="yellow"
               fontSize={1.5}
             />
-            {/* <button style={button} onClick={handleClick}>
-              SEARCH <img src={arrow} alt="arrow" />
-            </button> */}
           </Link>
         </div>
       </div>

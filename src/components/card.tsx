@@ -3,7 +3,8 @@ import * as css from "../css";
 
 /* Behöver ta in en bild som en prop också */
 export default function Card(props: Props) {
-  const imageSrc = "../assets/testImg.jpg";
+  // const imageSrc = "../assets/testImg.jpg";
+  const imageSrc = props.imgSrc;
   let bgColor = switchBgColor(props.color);
 
   return (
@@ -46,6 +47,7 @@ interface Props {
   fontSize: number;
   color: "blue" | "orange" | "black" | "yellow" | "beige";
   title: string;
+  imgSrc ?: string
 }
 
 /* ----- CSS ----- */
