@@ -1,22 +1,20 @@
 import React, { CSSProperties } from "react";
 import Header from "../components/header";
-import SearchBox from "../components/SPsearchBox";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import Card from "../components/card";
 import { blackBg, yellowBg } from "../css";
-import arrow from "../assets/black-arrow.png";
-
+import Button from "../components/button";
 
 interface MatchParams {
   search: string;
 }
-interface Props extends RouteComponentProps<MatchParams> {
-}
+
+interface Props extends RouteComponentProps<MatchParams> {}
 
 interface State {
-  inputValue: any;
+  inputValue: string;
   loading: boolean;
-  APIdata: any; //Vad är det för typ egentligen???
+  APIdata: any; // Kan man sätta en typ här?
   newSearch: string;
 }
 
@@ -27,13 +25,13 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       inputValue: this.props.match.params.search,
       loading: true,
       APIdata: {},
-      newSearch: ""
+      newSearch: "",
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   async componentDidMount() {
-   this.fetchData();
+    this.fetchData();
   }
 
   async fetchData() {
@@ -41,19 +39,20 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ APIdata: data, loading: false });
-    console.log(this.state.APIdata.artObjects);
+    this.render();
   }
 
-
-
+  /**
+   * Create cards depending on the number of objects of the search, but never more than six. 
+   * FONTSIZE ändrad pga att vissa konstnärers namn är väldigt långt.....
+   */
   createCards() {
     let cards: JSX.Element[] = [];
     for (let i = 0; i < this.state.APIdata.artObjects.length; i++) {
       if (i === 6) {
         break;
       }
-      let artist: string = this.state.APIdata.artObjects[i]
-        .principalOrFirstMaker;
+      let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       cards.push(
         <div style={cardContainer} key={i}>
@@ -64,18 +63,17 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
     return cards;
   }
 
-  async handleButtonClick(){
-   //this.setState({loading: true}) 
-    await this.setState({inputValue: this.state.newSearch})
+  /**
+   * Updates the inputValue to the new search
+   */
+  async handleButtonClick() {
+    //this.setState({loading: true})
+    await this.setState({ inputValue: this.state.newSearch });
     await this.fetchData();
     this.render();
   }
 
   render() {
-    //göra variabler för allt här?
-    
-    console.log(this.props.match.params.search);
-    //console.log(this.state.inputValue);
     return (
       <>
         {this.state.loading ? (
@@ -85,17 +83,38 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
             <Header h="8.375rem" c="#009ad1" />
             <div style={{ ...searchContainer, ...blackBg }}>
               <div style={search}>
-                <input onChange={(event) =>  this.setState({ newSearch: event.target.value})} style={{ ...blackBg, ...input }} type="text" />
-                <button style={button} onClick = {this.handleButtonClick}>
-                  SEARCH <img src={arrow} alt="arrow" />
-                </button>
+                <input
+                  onChange={(event) =>
+                    this.setState({ newSearch: event.target.value })
+                  }
+                  style={{ ...blackBg, ...input }}
+                  type="text"
+                />
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={{
+                    pathname: `/search/${this.state.newSearch}`,
+                  }}
+                >
+                  <Button
+                    type="search"
+                    text="SEARCH"
+                    backgroundColor="orange"
+                    textColor="black"
+                    fontSize={1.5}
+                    onClick={this.handleButtonClick}
+                  />
+                </Link>
               </div>
               <div style={text}>
                 <p style={{ margin: 0 }}>
                   {" "}
                   SEARCH RESULTS FOR "{this.state.inputValue}"{" "}
                 </p>
-                <p style={{ margin: 0 }}> {this.state.APIdata.count} ARTWORKS </p>
+                <p style={{ margin: 0 }}>
+                  {" "}
+                  {this.state.APIdata.count} ARTWORKS{" "}
+                </p>
               </div>
             </div>
             <div style={{ ...container, ...yellowBg }}>
@@ -125,7 +144,6 @@ const cardContainer: CSSProperties = {
   height: "29.3rem",
   width: "24.5rem",
 };
-
 
 const searchContainer: CSSProperties = {
   flex: 1,
@@ -157,20 +175,6 @@ const input: CSSProperties = {
   fontWeight: 700,
   fontSize: "1.5rem",
   padding: 0,
-};
-const button: CSSProperties = {
-  backgroundColor: "#FF9C5B",
-  color: "#262730",
-  fontSize: "1.5rem",
-  fontWeight: 700,
-  height: "3.25rem",
-  width: "15.9rem",
-  outline: "none",
-  border: 3,
-  padding: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-evenly",
 };
 
 const text: CSSProperties = {
