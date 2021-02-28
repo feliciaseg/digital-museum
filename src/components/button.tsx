@@ -5,6 +5,7 @@ export default function Button(props: Props) {
   //console.log(props);
   const backgroundColor = translateColor(props.backgroundColor);
   const textColor = translateColor(props.textColor);
+
   if (props.type === "search") {
     return (
       <button
@@ -45,6 +46,7 @@ export default function Button(props: Props) {
           fontSize: props.fontSize + "rem",
           ...button,
         }}
+        onClick={navigateBack}
       >
         <svg
           style={{
@@ -69,6 +71,14 @@ export default function Button(props: Props) {
   }
 }
 
+function search() {
+  console.log("search");
+}
+
+function navigateBack() {
+  window.history.back();
+}
+
 interface Props {
   type: "goBack" | "search";
   text: string;
@@ -84,4 +94,6 @@ const button: CSSProperties = {
   padding: "0.5em 2em",
   alignItems: "center",
   border: "none",
+  fontWeight: 600,
+  textTransform: "uppercase",
 };

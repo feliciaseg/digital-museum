@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import Header from "../components/header";
 import * as css from "../css";
-import arrow from "../assets/yellow-arrow.png";
+import Button from "../components/button";
 import Card from "../components/card";
 //import { RouteComponentProps } from "react-router-dom"
 
@@ -20,13 +20,15 @@ class ArtworkPage extends React.Component<Props, State> {
       <>
         <Header h="8.375rem" c="#FAFF70"></Header>
         <div style={{ ...css.orangeBg, ...hero }}>
-          <button
-            onClick={this.navigateBack}
-            style={{ ...button, ...css.blackBg, ...css.orangeTxt }}
-          >
-            <img style={{ transform: "rotate(180deg)" }} src={arrow}></img>
-            Go back
-          </button>
+          <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
+            <Button
+              type="goBack"
+              text="back"
+              backgroundColor="black"
+              textColor="orange"
+              fontSize={1.2}
+            />
+          </div>
           <img style={heroImg} src="../assets/testImg.jpg"></img>
         </div>
         <div style={{ ...css.blueBg }}>
@@ -52,17 +54,17 @@ class ArtworkPage extends React.Component<Props, State> {
             <h3 style={{ ...css.title, ...moreTitle }}>Rembrandt van Rijn</h3>
             <div style={cardsContainer}>
               <Card
-                fontSize={1.5}
+                fontSize={1.8}
                 color={"orange"}
                 title={"Johannes Wtenbogaert"}
               />
               <Card
-                fontSize={1.5}
+                fontSize={1.8}
                 color={"orange"}
                 title={"Johannes Wtenbogaert"}
               />
               <Card
-                fontSize={1.5}
+                fontSize={1.8}
                 color={"orange"}
                 title={"Johannes Wtenbogaert"}
               />
@@ -75,36 +77,18 @@ class ArtworkPage extends React.Component<Props, State> {
 }
 
 const hero: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
   position: "relative",
   width: "100%",
-  height: "30rem",
+  height: "35rem",
 };
 
 const heroImg: CSSProperties = {
   position: "absolute",
   height: "inherit",
   width: "inherit",
-  padding: "6rem 5.9rem 5.9rem 5.9rem",
+  padding: "6rem 5.9rem 4rem 5.9rem",
   objectFit: "cover",
   objectPosition: "center",
-};
-
-const button: CSSProperties = {
-  maxWidth: "15rem",
-  alignSelf: "flex-end",
-  margin: "2rem 5.9rem 0 5.9rem",
-  fontSize: "1.5rem",
-  fontWeight: 700,
-  height: "3.25rem",
-  width: "15.9rem",
-  outline: "none",
-  border: 3,
-  padding: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-evenly",
 };
 
 const artworkTitle: CSSProperties = {
@@ -112,7 +96,8 @@ const artworkTitle: CSSProperties = {
   width: "100%",
   margin: "0",
   fontSize: "4.8rem",
-  marginTop: "-10rem",
+  fontWeight: 900,
+  marginTop: "-8rem",
   wordBreak: "break-word",
 };
 
@@ -150,6 +135,7 @@ const moreTitle: CSSProperties = {
   width: "100%",
   maxWidth: "60rem",
   margin: "0.3rem 0",
+  fontWeight: 900,
 };
 
 const cardsContainer: CSSProperties = {
@@ -157,7 +143,7 @@ const cardsContainer: CSSProperties = {
   width: "100%",
   height: "auto",
   marginTop: "2rem",
-  gap: "2rem 1rem",
+  gap: "3rem 1rem",
   gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
   gridAutoRows: "20rem",
 };

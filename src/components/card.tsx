@@ -1,17 +1,20 @@
 import { CSSProperties } from "react";
 import * as css from "../css";
+import translateColor from "../helper";
 
 /* Behöver ta in en bild som en prop också */
 export default function Card(props: Props) {
+
   // const imageSrc = "../assets/testImg.jpg";
   const imageSrc = props.imgSrc;
-  let bgColor = switchBgColor(props.color);
+  const backgroundColor = translateColor(props.color);
+
 
   return (
     <div
       style={{
         ...card,
-        ...bgColor,
+        backgroundColor: backgroundColor,
         fontSize: props.fontSize + "rem",
       }}
     >
@@ -19,26 +22,6 @@ export default function Card(props: Props) {
       <p style={{ ...cardTitleStyle, ...css.title }}>{props.title}</p>
     </div>
   );
-}
-
-/**
- * Changes background color based of prop color
- */
-function switchBgColor(color: string) {
-  switch (color) {
-    case "blue":
-      return css.blueBg;
-    case "orange":
-      return css.orangeBg;
-    case "black":
-      return css.blackBg;
-    case "yellow":
-      return css.yellowBg;
-    case "beige":
-      return css.beigeBg;
-    default:
-      return css.beigeBg;
-  }
 }
 
 /* ----- INTERFACE ----- */
@@ -71,7 +54,8 @@ const cardImage: CSSProperties = {
 const cardTitleStyle: CSSProperties = {
   position: "absolute",
   margin: "0",
-  top: "calc(100% - 1.5rem)",
+  top: "calc(100% - 1.8rem)",
   padding: "0 1.5rem",
+  fontWeight: 900,
   wordBreak: "break-word",
 };
