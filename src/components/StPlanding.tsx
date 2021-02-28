@@ -1,50 +1,61 @@
-import React, { CSSProperties, useState } from "react";
+import React, { Component, CSSProperties, useState } from "react";
 import Header from "./header";
 import { yellowBg } from "../css";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import Button from "../components/button";
 
-export default function Landing() {
-  const [inputValue, setInputValue] = useState<string>("");
-  
-  return (
-    <div>
-      <Header h="16rem" c="#FF9C5B" />
-      <div style={container}>
-        <h2 style={h2}>
-          EXPLORE THE <br />
-          DIGITAL MUSEUM
-        </h2>
-        <p style={p}>
-          Search for an artist, an artwork or something else that might peak
-          your interest
-        </p>
-        <div style={search}>
-          <input
-            onChange={(event) => setInputValue(event.target.value)}
-            style={input}
-            type="text"
-          />
-          <Link
-            style={{ textDecoration: "none" }}
-            to={{
-              pathname: `/search/${inputValue}`,
-              state: inputValue,
-            }}
-          >
-            <Button
-              type="search"
-              text="SEARCH"
-              backgroundColor="black"
-              textColor="yellow"
-              fontSize={1.5}
+interface Props {}
+interface State {
+  inputValue: string;
+}
+
+export default class Landing extends Component<Props, State> {
+  constructor(props: Props & RouteComponentProps) {
+    super(props);
+    this.state = {
+      inputValue: "",
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <Header h="16rem" c="#FF9C5B" />
+        <div style={container}>
+          <h2 style={h2}>
+            EXPLORE THE <br />
+            DIGITAL MUSEUM
+          </h2>
+          <p style={p}>
+            Search for an artist, an artwork or something else that might peak
+            your interest
+          </p>
+          <div style={search}>
+            <input
+              onChange={(event) => this.setState({inputValue: event.target.value})}
+              style={input}
+              type="text"
             />
-          </Link>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={{
+                pathname: `/search/${this.state.inputValue}`,
+              }}
+            >
+              <Button
+                type="search"
+                text="SEARCH"
+                backgroundColor="black"
+                textColor="yellow"
+                fontSize={1.5}
+              />
+            </Link>
+          </div>
         </div>
+        <div style={{ ...yellowBg, ...yellowBox }} />
       </div>
-      <div style={{ ...yellowBg, ...yellowBox }} />
-    </div>
-  );
+    );
+  }
 }
 
 /* ----- CSS ----- */
