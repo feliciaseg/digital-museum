@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, useImperativeHandle, useState } from "react";
 import Header from "./header";
 import { yellowBg } from "../css";
 import { Link } from "react-router-dom";
@@ -6,7 +6,10 @@ import Button from "../components/button";
 
 export default function Landing() {
   const [inputValue, setInputValue] = useState<string>("");
+function handleClick() {
+  console.log( "klick på knappen me on click")
 
+}
   return (
     <div>
       <Header h="16rem" c="#FF9C5B" />
@@ -28,7 +31,7 @@ export default function Landing() {
           <Link
             style={{ textDecoration: "none" }}
             to={{
-              pathname: `/search`,
+              pathname: `/search/${inputValue}`,
               state: inputValue,
             }}
           >
@@ -38,7 +41,8 @@ export default function Landing() {
               backgroundColor="black"
               textColor="yellow"
               fontSize={1.5}
-            />
+              onClick = {handleClick}
+            /> 
           </Link>
         </div>
       </div>
@@ -91,17 +95,4 @@ const search: CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
 };
-const button: CSSProperties = {
-  backgroundColor: "#262730",
-  color: "#FAFF70",
-  fontSize: "1.5rem",
-  fontWeight: 700,
-  height: "3.25rem",
-  width: "15.9rem",
-  outline: "none",
-  border: 3,
-  padding: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-evenly",
-};
+

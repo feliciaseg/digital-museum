@@ -1,21 +1,19 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import { blackBg } from "../css";
 import arrow from "../assets/black-arrow.png";
+import { Link } from "react-router-dom";
 
 export default function SearchBox(props: Props) {
-  function handleClick() {
-    console.log("button clicked");
-  }
+  
+  
 
   return (
     <div style={{ ...container, ...blackBg }}>
       <div style={search}>
         <input style={{ ...blackBg, ...input }} type="text" />
-        {/* <Link style = {{textDecoration: "none"}} to="/search"> */}
-        <button style={button} onClick={handleClick}>
+        <button style={button} >
           SEARCH <img src={arrow} alt="arrow" />
         </button>
-        {/* </Link> */}
       </div>
       <div style={text}>
         <p style={{ margin: 0 }}> SEARCH RESULTS FOR "{props.searchResult}" </p>

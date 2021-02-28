@@ -13,7 +13,7 @@ export default function Button(props: Props) {
           color: textColor,
           fontSize: props.fontSize + "rem",
           ...button,
-        }}
+        }} onClick = {props.onClick}
       >
         {props.text}
         <svg
@@ -75,6 +75,7 @@ interface Props {
   backgroundColor: "blue" | "orange" | "black" | "yellow" | "beige";
   textColor: "blue" | "orange" | "black" | "yellow" | "beige";
   fontSize: number;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const button: CSSProperties = {

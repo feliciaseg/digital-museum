@@ -3,33 +3,48 @@ import Header from "../components/header";
 import SearchBox from "../components/SPsearchBox";
 import { RouteComponentProps } from "react-router-dom";
 import Card from "../components/card";
-import { yellowBg } from "../css";
+import { blackBg, yellowBg } from "../css";
+import arrow from "../assets/black-arrow.png";
 
-interface Props {}
+
+interface MatchParams {
+  search: string;
+}
+interface Props extends RouteComponentProps<MatchParams> {
+}
 
 interface State {
   inputValue: any;
   loading: boolean;
   APIdata: any; //Vad är det för typ egentligen???
+  newSearch: string;
 }
 
 class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   constructor(props: Props & RouteComponentProps) {
     super(props);
     this.state = {
-      inputValue: this.props.location.state,
+      inputValue: this.props.match.params.search,
       loading: true,
       APIdata: {},
+      newSearch: ""
     };
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   async componentDidMount() {
+   this.fetchData();
+  }
+
+  async fetchData() {
     const url: string = `https://www.rijksmuseum.nl/api/en/collection?key=dZz20am8&q=${this.state.inputValue}&imgonly=true`;
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ APIdata: data, loading: false });
     console.log(this.state.APIdata.artObjects);
   }
+
+
 
   createCards() {
     let cards: JSX.Element[] = [];
@@ -49,9 +64,18 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
     return cards;
   }
 
+  async handleButtonClick(){
+   //this.setState({loading: true}) 
+    await this.setState({inputValue: this.state.newSearch})
+    await this.fetchData();
+    this.render();
+  }
+
   render() {
-    console.log(this.state.loading);
-    console.log(this.state.inputValue);
+    //göra variabler för allt här?
+    
+    console.log(this.props.match.params.search);
+    //console.log(this.state.inputValue);
     return (
       <>
         {this.state.loading ? (
@@ -59,10 +83,21 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         ) : (
           <>
             <Header h="8.375rem" c="#009ad1" />
-            <SearchBox
-              searchResult={this.state.inputValue}
-              nmbrOfArtworks={this.state.APIdata.count}
-            />
+            <div style={{ ...searchContainer, ...blackBg }}>
+              <div style={search}>
+                <input onChange={(event) =>  this.setState({ newSearch: event.target.value})} style={{ ...blackBg, ...input }} type="text" />
+                <button style={button} onClick = {this.handleButtonClick}>
+                  SEARCH <img src={arrow} alt="arrow" />
+                </button>
+              </div>
+              <div style={text}>
+                <p style={{ margin: 0 }}>
+                  {" "}
+                  SEARCH RESULTS FOR "{this.state.inputValue}"{" "}
+                </p>
+                <p style={{ margin: 0 }}> {this.state.APIdata.count} ARTWORKS </p>
+              </div>
+            </div>
             <div style={{ ...container, ...yellowBg }}>
               {this.createCards()}
             </div>
@@ -89,6 +124,63 @@ const container: CSSProperties = {
 const cardContainer: CSSProperties = {
   height: "29.3rem",
   width: "24.5rem",
+};
+
+
+const searchContainer: CSSProperties = {
+  flex: 1,
+  height: 255,
+  paddingRight: "6.3rem",
+  paddingLeft: "5.1rem",
+  paddingTop: "2.6rem",
+  paddingBottom: "2.1rem",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+};
+
+const search: CSSProperties = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  width: "57.4rem",
+};
+
+const input: CSSProperties = {
+  outline: "none",
+  border: 3,
+  borderStyle: "solid",
+  borderColor: "#FF9C5B",
+  height: "3.4rem",
+  width: "39.6rem",
+  color: "#FF9C5B",
+  fontWeight: 700,
+  fontSize: "1.5rem",
+  padding: 0,
+};
+const button: CSSProperties = {
+  backgroundColor: "#FF9C5B",
+  color: "#262730",
+  fontSize: "1.5rem",
+  fontWeight: 700,
+  height: "3.25rem",
+  width: "15.9rem",
+  outline: "none",
+  border: 3,
+  padding: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-evenly",
+};
+
+const text: CSSProperties = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "flex-end",
+  color: "#FF9C5B",
+  fontWeight: 700,
+  fontSize: "1.5rem",
 };
 
 export default SearchPage;
