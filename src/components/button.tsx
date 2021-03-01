@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import translateColor from "../helper";
+import { translateColor } from "../helper";
 
 export default function Button(props: Props) {
   //console.log(props);
@@ -14,7 +14,8 @@ export default function Button(props: Props) {
           color: textColor,
           fontSize: props.fontSize + "rem",
           ...button,
-        }} onClick = {props.onClick}
+        }}
+        onClick={props.onClick}
       >
         {props.text}
         <svg
@@ -46,7 +47,7 @@ export default function Button(props: Props) {
           fontSize: props.fontSize + "rem",
           ...button,
         }}
-        onClick={navigateBack}
+        onClick={props.onClick}
       >
         <svg
           style={{
@@ -69,14 +70,6 @@ export default function Button(props: Props) {
       </button>
     );
   }
-}
-
-// function search() {
-//   console.log("search");
-// }
-
-function navigateBack() {
-  window.history.back();
 }
 
 interface Props {

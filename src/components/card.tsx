@@ -1,14 +1,12 @@
 import { CSSProperties } from "react";
 import * as css from "../css";
-import translateColor from "../helper";
+import { translateColor } from "../helper";
 
 /* Behöver ta in en bild som en prop också */
 export default function Card(props: Props) {
-
   // const imageSrc = "../assets/testImg.jpg";
   const imageSrc = props.imgSrc;
   const backgroundColor = translateColor(props.color);
-
 
   return (
     <div
@@ -19,9 +17,20 @@ export default function Card(props: Props) {
       }}
     >
       <img style={cardImage} src={imageSrc} alt="img"></img>
-      <p style={{ ...cardTitleStyle, ...css.title }}>{props.title}</p>
+      <p style={{ ...cardTitleStyle, ...css.title }}>
+        {formatTitle(props.title)}
+      </p>
     </div>
   );
+}
+
+function formatTitle(title: string): string {
+  if (title.length > 35) {
+    const formattedTitle = title.slice(0, 35);
+    return formattedTitle + "...";
+  } else {
+    return title;
+  }
 }
 
 /* ----- INTERFACE ----- */
@@ -30,7 +39,7 @@ interface Props {
   fontSize: number;
   color: "blue" | "orange" | "black" | "yellow" | "beige";
   title: string;
-  imgSrc ?: string
+  imgSrc?: string;
 }
 
 /* ----- CSS ----- */

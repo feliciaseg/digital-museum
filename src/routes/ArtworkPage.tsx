@@ -1,26 +1,24 @@
 import React, { CSSProperties } from "react";
-import Header from "../components/header";
 import * as css from "../css";
+import Header from "../components/header";
 import Button from "../components/button";
 import Card from "../components/card";
-import { RouteComponentProps } from "react-router-dom"
-
+import { Link, RouteComponentProps } from "react-router-dom";
+import { fetchSearchData, fetchObjectData } from "../helper";
 
 interface MatchParams {
   object: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {
-}
-
-
-// Ska ta in ett objektnummer
-
+interface Props extends RouteComponentProps<MatchParams> {}
 
 interface State {
   object: string;
-  APIdata: any;
-  loading: boolean
+  APIData: any;
+  searchData: any;
+  mainDataLoading: boolean;
+  cardsDataLoading: boolean;
+  reload: boolean;
 }
 
 class ArtworkPage extends React.Component<Props, State> {
@@ -28,89 +26,125 @@ class ArtworkPage extends React.Component<Props, State> {
     super(props);
     this.state = {
       object: this.props.match.params.object,
-      APIdata: {},
-      loading: true
+      APIData: {},
+      searchData: {},
+      mainDataLoading: true,
+      cardsDataLoading: true,
+      reload: false,
     };
   }
-  
-  async componentDidMount(){
-    this.fetchData();
+
+  async componentDidMount() {
+    this.setState({
+      APIData: await fetchObjectData(this.props.match.params.object),
+      mainDataLoading: false,
+    });
   }
 
+  async componentDidUpdate(prevProps: Props, prevState: State) {
+    // When the URL updates, the API is fetched and the data updated
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        APIData: await fetchObjectData(this.props.match.params.object),
+        mainDataLoading: false,
+      });
+    }
+
+    // searchData uses the state of APIData
+    // so it needs to be called after APIData has updated
+    if (this.state.APIData !== prevState.APIData) {
+      this.setState({
+        searchData: await fetchSearchData(
+          this.state.APIData.principalOrFirstMaker
+        ),
+        cardsDataLoading: false,
+      });
+    }
+  }
 
   navigateBack() {
+    // Funkar inte???
     window.history.back();
   }
 
-
-  async fetchData() {
-    const url: string = `https://www.rijksmuseum.nl/api/en/collection/${this.state.object}?key=dZz20am8`;
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ APIdata: data, loading: false });
-    //this.render();
+  createCards() {
+    let cards: JSX.Element[] = [];
+    for (let i = 0; i < this.state.searchData.length; i++) {
+      if (i === 3) {
+        break;
+      }
+      let artwork: string = this.state.searchData[i].title;
+      let image: string = this.state.searchData[i].headerImage.url;
+      let objectNumber: string = this.state.searchData[i].objectNumber;
+      cards.push(
+        <Link
+          style={{ textDecoration: "none", color: "inherit" }}
+          to={{
+            pathname: `/artwork/${objectNumber}`,
+          }}
+          key={i}
+        >
+          <Card color="orange" fontSize={1.8} title={artwork} imgSrc={image} />
+        </Link>
+      );
+    }
+    return cards;
   }
 
-
   render() {
-
-
-
+    console.log(this.state.APIData);
     return (
       <>
-        <Header h="8.375rem" c="#FAFF70"></Header>
-        <div style={{ ...css.orangeBg, ...hero }}>
-          <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
-            <Button
-              type="goBack"
-              text="back"
-              backgroundColor="black"
-              textColor="orange"
-              fontSize={1.2}
-            />
-          </div>
-          <img style={heroImg} src="../assets/testImg.jpg"></img>
-        </div>
-        <div style={{ ...css.blueBg }}>
-          <div style={descriptionContainer}>
-            <h2 style={{ ...css.title, ...artworkTitle }}>
-              Johannes Wtenbogaert
-            </h2>
-            <div style={metaContainer}>
-              <p style={meta}>Rembrandt van Rijn, 1633</p>
-              <p style={meta}>oil on canvas</p>
+        {this.state.mainDataLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <Header h="8.375rem" c="#FAFF70"></Header>
+            <div style={{ ...css.orangeBg, ...hero }}>
+              <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
+                <Button
+                  type="goBack"
+                  text="back"
+                  backgroundColor="black"
+                  textColor="orange"
+                  fontSize={1.2}
+                  onClick={this.navigateBack}
+                />
+              </div>
+              <img style={heroImg} src={this.state.APIData.webImage.url}></img>
             </div>
-            <p style={artworkDescription}>
-              The Amsterdam merchant Abraham Anthonisz Recht was a convinced
-              Remonstrant and great admirer of Wtenbogaert. He commissioned this
-              portrait from Rembrandt in 1633 and hung it in his home.
-              Wtenbogaert looks at you with a penetrating gaze, he is clearly a
-              man of moral authority. And, a man of the Word, as the open book
-              suggests. But exactly which book it is, remains unknown.
-            </p>
-          </div>
-          <div style={{ ...css.beigeBg, ...moreContainer }}>
-            <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-            <h3 style={{ ...css.title, ...moreTitle }}>Rembrandt van Rijn</h3>
-            <div style={cardsContainer}>
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
+            <div style={{ ...css.blueBg }}>
+              <div style={descriptionContainer}>
+                <h2 style={{ ...css.title, ...artworkTitle }}>
+                  {this.state.APIData.title}
+                </h2>
+                <div style={metaContainer}>
+                  <p style={meta}>
+                    {this.state.APIData.principalOrFirstMaker},{" "}
+                    {this.state.APIData.dating.presentingDate}
+                  </p>
+                  <p style={meta}>{this.state.APIData.materials[0]}</p>
+                </div>
+                <p style={artworkDescription}>
+                  {this.state.APIData.plaqueDescriptionEnglish
+                    ? this.state.APIData.plaqueDescriptionEnglish
+                    : this.state.APIData.label.description}
+                </p>
+              </div>
+              <div style={{ ...css.beigeBg, ...moreContainer }}>
+                <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                <h3 style={{ ...css.title, ...moreTitle }}>
+                  {this.state.APIData.principalOrFirstMaker}
+                </h3>
+                {this.state.cardsDataLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <div style={cardsContainer}>{this.createCards()}</div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </>
     );
   }
@@ -137,7 +171,7 @@ const artworkTitle: CSSProperties = {
   margin: "0",
   fontSize: "4.8rem",
   fontWeight: 900,
-  marginTop: "-8rem",
+  marginTop: "-8.5rem",
   wordBreak: "break-word",
 };
 
@@ -167,7 +201,7 @@ const artworkDescription: CSSProperties = {
 };
 
 const moreContainer: CSSProperties = {
-  padding: "3em 5.9rem 5rem 5.9rem",
+  padding: "3em 5.9rem 8rem 5.9rem",
 };
 
 const moreTitle: CSSProperties = {
