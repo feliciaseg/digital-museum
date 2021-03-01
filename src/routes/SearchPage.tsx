@@ -43,7 +43,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   }
 
   /**
-   * Create cards depending on the number of objects of the search, but never more than six. 
+   * Create cards depending on the number of objects of the search, but never more than six.
    * FONTSIZE ändrad pga att vissa konstnärers namn är väldigt långt.....
    */
   createCards() {
@@ -54,10 +54,18 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       }
       let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
+      let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber
       cards.push(
-        <div style={cardContainer} key={i}>
-          <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
-        </div>
+        <Link
+          style={{ textDecoration: "none", color: "inherit" }}
+          to={{
+            pathname: `/artwork/${objectNumber}`,
+          }} key={i}
+        >
+          <div style={cardContainer} >
+            <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
+          </div>
+        </Link>
       );
     }
     return cards;
@@ -74,6 +82,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   }
 
   render() {
+    console.log(this.state.APIdata);
     return (
       <>
         {this.state.loading ? (

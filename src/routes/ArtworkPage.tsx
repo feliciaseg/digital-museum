@@ -3,19 +3,59 @@ import Header from "../components/header";
 import * as css from "../css";
 import Button from "../components/button";
 import Card from "../components/card";
-//import { RouteComponentProps } from "react-router-dom"
+import { RouteComponentProps } from "react-router-dom"
+
+
+interface MatchParams {
+  object: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> {
+}
+
 
 // Ska ta in ett objektnummer
-interface Props {}
 
-interface State {}
+
+interface State {
+  object: string;
+  APIdata: any;
+  loading: boolean
+}
 
 class ArtworkPage extends React.Component<Props, State> {
+  constructor(props: Props & RouteComponentProps) {
+    super(props);
+    this.state = {
+      object: this.props.match.params.object,
+      APIdata: {},
+      loading: true
+    };
+  }
+  
+  async componentDidMount(){
+    this.fetchData();
+  }
+
+
   navigateBack() {
     window.history.back();
   }
 
+
+  async fetchData() {
+    const url: string = `https://www.rijksmuseum.nl/api/en/collection/${this.state.object}?key=dZz20am8`;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ APIdata: data, loading: false });
+    //this.render();
+  }
+
+
   render() {
+
+
+
     return (
       <>
         <Header h="8.375rem" c="#FAFF70"></Header>
