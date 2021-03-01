@@ -71,9 +71,9 @@ export default function Button(props: Props) {
   }
 }
 
-function search() {
-  console.log("search");
-}
+// function search() {
+//   console.log("search");
+// }
 
 function navigateBack() {
   window.history.back();
