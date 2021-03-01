@@ -52,17 +52,19 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       if (i === 6) {
         break;
       }
-      let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
+      let artist: string = this.state.APIdata.artObjects[i]
+        .principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
-      let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber
+      let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
           to={{
             pathname: `/artwork/${objectNumber}`,
-          }} key={i}
+          }}
+          key={i}
         >
-          <div style={cardContainer} >
+          <div style={cardContainer}>
             <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
           </div>
         </Link>
@@ -82,7 +84,6 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   }
 
   render() {
-    console.log(this.state.APIdata);
     return (
       <>
         {this.state.loading ? (

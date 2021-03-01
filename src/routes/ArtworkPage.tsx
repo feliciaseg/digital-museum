@@ -1,26 +1,24 @@
 import React, { CSSProperties } from "react";
-import Header from "../components/header";
 import * as css from "../css";
+import Header from "../components/header";
 import Button from "../components/button";
 import Card from "../components/card";
-import { RouteComponentProps } from "react-router-dom"
-
+import { RouteComponentProps } from "react-router-dom";
+import { fetchSearchData, fetchObjectData } from "../helper";
 
 interface MatchParams {
   object: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {
-}
-
+interface Props extends RouteComponentProps<MatchParams> {}
 
 // Ska ta in ett objektnummer
-
 
 interface State {
   object: string;
   APIdata: any;
-  loading: boolean
+  searchData: any;
+  loading: boolean;
 }
 
 class ArtworkPage extends React.Component<Props, State> {
@@ -29,88 +27,98 @@ class ArtworkPage extends React.Component<Props, State> {
     this.state = {
       object: this.props.match.params.object,
       APIdata: {},
-      loading: true
+      searchData: {},
+      loading: true,
     };
   }
-  
-  async componentDidMount(){
-    this.fetchData();
-  }
 
+  async componentDidMount() {
+    const data = await fetchObjectData(this.props.match.params.object);
+    console.log(data);
+    this.setState({
+      APIdata: await fetchObjectData(this.props.match.params.object),
+      searchData: await fetchSearchData(
+        this.state.APIdata.principalOrFirstMaker
+      ),
+      loading: false,
+    });
+  }
 
   navigateBack() {
-    window.history.back();
+    console.log("click");
+    /* window.history.back(); */
   }
 
-
-  async fetchData() {
+  /*  async fetchData() {
     const url: string = `https://www.rijksmuseum.nl/api/en/collection/${this.state.object}?key=dZz20am8`;
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ APIdata: data, loading: false });
-    //this.render();
-  }
-
+    this.saveDataToState(data.artObject);
+    this.setState({ loading: false });
+  } */
 
   render() {
-
-
-
+    console.log("search", this.state.searchData);
     return (
       <>
-        <Header h="8.375rem" c="#FAFF70"></Header>
-        <div style={{ ...css.orangeBg, ...hero }}>
-          <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
-            <Button
-              type="goBack"
-              text="back"
-              backgroundColor="black"
-              textColor="orange"
-              fontSize={1.2}
-            />
-          </div>
-          <img style={heroImg} src="../assets/testImg.jpg"></img>
-        </div>
-        <div style={{ ...css.blueBg }}>
-          <div style={descriptionContainer}>
-            <h2 style={{ ...css.title, ...artworkTitle }}>
-              Johannes Wtenbogaert
-            </h2>
-            <div style={metaContainer}>
-              <p style={meta}>Rembrandt van Rijn, 1633</p>
-              <p style={meta}>oil on canvas</p>
+        {this.state.loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <Header h="8.375rem" c="#FAFF70"></Header>
+            <div style={{ ...css.orangeBg, ...hero }}>
+              <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
+                <Button
+                  type="goBack"
+                  text="back"
+                  backgroundColor="black"
+                  textColor="orange"
+                  fontSize={1.2}
+                  onClick={this.navigateBack}
+                />
+              </div>
+              <img style={heroImg} src={this.state.APIdata.webImage.url}></img>
             </div>
-            <p style={artworkDescription}>
-              The Amsterdam merchant Abraham Anthonisz Recht was a convinced
-              Remonstrant and great admirer of Wtenbogaert. He commissioned this
-              portrait from Rembrandt in 1633 and hung it in his home.
-              Wtenbogaert looks at you with a penetrating gaze, he is clearly a
-              man of moral authority. And, a man of the Word, as the open book
-              suggests. But exactly which book it is, remains unknown.
-            </p>
-          </div>
-          <div style={{ ...css.beigeBg, ...moreContainer }}>
-            <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-            <h3 style={{ ...css.title, ...moreTitle }}>Rembrandt van Rijn</h3>
-            <div style={cardsContainer}>
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
-              <Card
-                fontSize={1.8}
-                color={"orange"}
-                title={"Johannes Wtenbogaert"}
-              />
+            <div style={{ ...css.blueBg }}>
+              <div style={descriptionContainer}>
+                <h2 style={{ ...css.title, ...artworkTitle }}>
+                  {this.state.APIdata.title}
+                </h2>
+                <div style={metaContainer}>
+                  <p style={meta}>
+                    {this.state.APIdata.principalOrFirstMaker},{" "}
+                    {this.state.APIdata.dating.presentingDate}
+                  </p>
+                  <p style={meta}>{this.state.APIdata.materials[0]}</p>
+                </div>
+                <p style={artworkDescription}>
+                  {this.state.APIdata.plaqueDescriptionEnglish}
+                </p>
+              </div>
+              <div style={{ ...css.beigeBg, ...moreContainer }}>
+                <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                <h3 style={{ ...css.title, ...moreTitle }}>{}</h3>
+                <div style={cardsContainer}>
+                  <Card
+                    fontSize={1.8}
+                    color={"orange"}
+                    title={"Johannes Wtenbogaert"}
+                  />
+                  <Card
+                    fontSize={1.8}
+                    color={"orange"}
+                    title={"Johannes Wtenbogaert"}
+                  />
+                  <Card
+                    fontSize={1.8}
+                    color={"orange"}
+                    title={"Johannes Wtenbogaert"}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </>
     );
   }
