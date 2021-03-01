@@ -16,7 +16,8 @@ interface State {
   object: string;
   APIData: any;
   searchData: any;
-  loading: boolean;
+  mainDataLoading: boolean;
+  cardsDataLoading: boolean;
   reload: boolean;
 }
 
@@ -27,7 +28,8 @@ class ArtworkPage extends React.Component<Props, State> {
       object: this.props.match.params.object,
       APIData: {},
       searchData: {},
-      loading: true,
+      mainDataLoading: true,
+      cardsDataLoading: true,
       reload: false,
     };
   }
@@ -35,10 +37,7 @@ class ArtworkPage extends React.Component<Props, State> {
   async componentDidMount() {
     this.setState({
       APIData: await fetchObjectData(this.props.match.params.object),
-      searchData: await fetchSearchData(
-        this.state.APIData.principalOrFirstMaker
-      ),
-      loading: false,
+      mainDataLoading: false,
     });
   }
 
@@ -47,7 +46,7 @@ class ArtworkPage extends React.Component<Props, State> {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({
         APIData: await fetchObjectData(this.props.match.params.object),
-        loading: false,
+        mainDataLoading: false,
       });
     }
 
@@ -58,6 +57,7 @@ class ArtworkPage extends React.Component<Props, State> {
         searchData: await fetchSearchData(
           this.state.APIData.principalOrFirstMaker
         ),
+        cardsDataLoading: false,
       });
     }
   }
@@ -92,9 +92,10 @@ class ArtworkPage extends React.Component<Props, State> {
   }
 
   render() {
+    console.log(this.state.APIData);
     return (
       <>
-        {this.state.loading ? (
+        {this.state.mainDataLoading ? (
           <p>Loading...</p>
         ) : (
           <>
@@ -135,7 +136,11 @@ class ArtworkPage extends React.Component<Props, State> {
                 <h3 style={{ ...css.title, ...moreTitle }}>
                   {this.state.APIData.principalOrFirstMaker}
                 </h3>
-                <div style={cardsContainer}>{this.createCards()}</div>
+                {this.state.cardsDataLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <div style={cardsContainer}>{this.createCards()}</div>
+                )}
               </div>
             </div>
           </>
@@ -166,7 +171,7 @@ const artworkTitle: CSSProperties = {
   margin: "0",
   fontSize: "4.8rem",
   fontWeight: 900,
-  marginTop: "-8rem",
+  marginTop: "-8.5rem",
   wordBreak: "break-word",
 };
 
