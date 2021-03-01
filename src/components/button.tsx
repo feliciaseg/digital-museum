@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import translateColor from "../helper";
 
 export default function Button(props: Props) {
-  console.log(props);
+  //console.log(props);
   const backgroundColor = translateColor(props.backgroundColor);
   const textColor = translateColor(props.textColor);
 
@@ -14,8 +14,7 @@ export default function Button(props: Props) {
           color: textColor,
           fontSize: props.fontSize + "rem",
           ...button,
-        }}
-        onClick={search}
+        }} onClick = {props.onClick}
       >
         {props.text}
         <svg
@@ -86,6 +85,7 @@ interface Props {
   backgroundColor: "blue" | "orange" | "black" | "yellow" | "beige";
   textColor: "blue" | "orange" | "black" | "yellow" | "beige";
   fontSize: number;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const button: CSSProperties = {

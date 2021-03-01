@@ -1,15 +1,12 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import Header from "./header";
-import arrow from "../assets/yellow-arrow.png";
 import { yellowBg } from "../css";
 import { Link } from "react-router-dom";
 import Button from "../components/button";
 
 export default function Landing() {
-  function handleClick() {
-    console.log("button clicked");
-  }
-
+  const [inputValue, setInputValue] = useState<string>("");
+  
   return (
     <div>
       <Header h="16rem" c="#FF9C5B" />
@@ -23,9 +20,18 @@ export default function Landing() {
           your interest
         </p>
         <div style={search}>
-          <input style={input} type="text" />
-
-          <Link style={{ textDecoration: "none" }} to="/search">
+          <input
+            onChange={(event) => setInputValue(event.target.value)}
+            style={input}
+            type="text"
+          />
+          <Link
+            style={{ textDecoration: "none" }}
+            to={{
+              pathname: `/search/${inputValue}`,
+              state: inputValue,
+            }}
+          >
             <Button
               type="search"
               text="SEARCH"
@@ -33,9 +39,6 @@ export default function Landing() {
               textColor="yellow"
               fontSize={1.5}
             />
-            {/* <button style={button} onClick={handleClick}>
-              SEARCH <img src={arrow} alt="arrow" />
-            </button> */}
           </Link>
         </div>
       </div>
@@ -87,18 +90,4 @@ const p: CSSProperties = {
 const search: CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-};
-const button: CSSProperties = {
-  backgroundColor: "#262730",
-  color: "#FAFF70",
-  fontSize: "1.5rem",
-  fontWeight: 700,
-  height: "3.25rem",
-  width: "15.9rem",
-  outline: "none",
-  border: 3,
-  padding: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-evenly",
 };

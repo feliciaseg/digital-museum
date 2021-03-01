@@ -4,8 +4,11 @@ import translateColor from "../helper";
 
 /* Behöver ta in en bild som en prop också */
 export default function Card(props: Props) {
-  const imageSrc = "../assets/testImg.jpg";
+
+  // const imageSrc = "../assets/testImg.jpg";
+  const imageSrc = props.imgSrc;
   const backgroundColor = translateColor(props.color);
+
 
   return (
     <div
@@ -27,6 +30,7 @@ interface Props {
   fontSize: number;
   color: "blue" | "orange" | "black" | "yellow" | "beige";
   title: string;
+  imgSrc ?: string
 }
 
 /* ----- CSS ----- */

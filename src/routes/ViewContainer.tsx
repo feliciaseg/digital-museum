@@ -15,7 +15,7 @@ class ViewContainer extends React.Component<Props, State> {
       <Switch>
         <Route exact path="/" component={StartPage} />
         <Route exact path="/collection" component={CollectionsPage} />
-        <Route exact path="/search" component={SearchPage} />
+        <Route  path="/search/:search?" component={SearchPage} />
         <Route exact path="/artwork" component={ArtworkPage} />
         <h2> Page not found</h2>
       </Switch>
