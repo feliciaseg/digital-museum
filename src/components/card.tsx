@@ -17,9 +17,20 @@ export default function Card(props: Props) {
       }}
     >
       <img style={cardImage} src={imageSrc} alt="img"></img>
-      <p style={{ ...cardTitleStyle, ...css.title }}>{props.title}</p>
+      <p style={{ ...cardTitleStyle, ...css.title }}>
+        {formatTitle(props.title)}
+      </p>
     </div>
   );
+}
+
+function formatTitle(title: string): string {
+  if (title.length > 35) {
+    const formattedTitle = title.slice(0, 35);
+    return formattedTitle + "...";
+  } else {
+    return title;
+  }
 }
 
 /* ----- INTERFACE ----- */

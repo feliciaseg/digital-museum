@@ -3,7 +3,7 @@ import * as css from "../css";
 import Header from "../components/header";
 import Button from "../components/button";
 import Card from "../components/card";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import { fetchSearchData, fetchObjectData } from "../helper";
 
 interface MatchParams {
@@ -12,13 +12,12 @@ interface MatchParams {
 
 interface Props extends RouteComponentProps<MatchParams> {}
 
-// Ska ta in ett objektnummer
-
 interface State {
   object: string;
-  APIdata: any;
+  APIData: any;
   searchData: any;
   loading: boolean;
+  reload: boolean;
 }
 
 class ArtworkPage extends React.Component<Props, State> {
@@ -26,39 +25,73 @@ class ArtworkPage extends React.Component<Props, State> {
     super(props);
     this.state = {
       object: this.props.match.params.object,
-      APIdata: {},
+      APIData: {},
       searchData: {},
       loading: true,
+      reload: false,
     };
   }
 
   async componentDidMount() {
-    const data = await fetchObjectData(this.props.match.params.object);
-    console.log(data);
     this.setState({
-      APIdata: await fetchObjectData(this.props.match.params.object),
+      APIData: await fetchObjectData(this.props.match.params.object),
       searchData: await fetchSearchData(
-        this.state.APIdata.principalOrFirstMaker
+        this.state.APIData.principalOrFirstMaker
       ),
       loading: false,
     });
   }
 
-  navigateBack() {
-    console.log("click");
-    /* window.history.back(); */
+  async componentDidUpdate(prevProps: Props, prevState: State) {
+    // When the URL updates, the API is fetched and the data updated
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        APIData: await fetchObjectData(this.props.match.params.object),
+        loading: false,
+      });
+    }
+
+    // searchData uses the state of APIData
+    // so it needs to be called after APIData has updated
+    if (this.state.APIData !== prevState.APIData) {
+      this.setState({
+        searchData: await fetchSearchData(
+          this.state.APIData.principalOrFirstMaker
+        ),
+      });
+    }
   }
 
-  /*  async fetchData() {
-    const url: string = `https://www.rijksmuseum.nl/api/en/collection/${this.state.object}?key=dZz20am8`;
-    const response = await fetch(url);
-    const data = await response.json();
-    this.saveDataToState(data.artObject);
-    this.setState({ loading: false });
-  } */
+  navigateBack() {
+    // Funkar inte???
+    window.history.back();
+  }
+
+  createCards() {
+    let cards: JSX.Element[] = [];
+    for (let i = 0; i < this.state.searchData.length; i++) {
+      if (i === 3) {
+        break;
+      }
+      let artwork: string = this.state.searchData[i].title;
+      let image: string = this.state.searchData[i].headerImage.url;
+      let objectNumber: string = this.state.searchData[i].objectNumber;
+      cards.push(
+        <Link
+          style={{ textDecoration: "none", color: "inherit" }}
+          to={{
+            pathname: `/artwork/${objectNumber}`,
+          }}
+          key={i}
+        >
+          <Card color="orange" fontSize={1.8} title={artwork} imgSrc={image} />
+        </Link>
+      );
+    }
+    return cards;
+  }
 
   render() {
-    console.log("search", this.state.searchData);
     return (
       <>
         {this.state.loading ? (
@@ -77,44 +110,32 @@ class ArtworkPage extends React.Component<Props, State> {
                   onClick={this.navigateBack}
                 />
               </div>
-              <img style={heroImg} src={this.state.APIdata.webImage.url}></img>
+              <img style={heroImg} src={this.state.APIData.webImage.url}></img>
             </div>
             <div style={{ ...css.blueBg }}>
               <div style={descriptionContainer}>
                 <h2 style={{ ...css.title, ...artworkTitle }}>
-                  {this.state.APIdata.title}
+                  {this.state.APIData.title}
                 </h2>
                 <div style={metaContainer}>
                   <p style={meta}>
-                    {this.state.APIdata.principalOrFirstMaker},{" "}
-                    {this.state.APIdata.dating.presentingDate}
+                    {this.state.APIData.principalOrFirstMaker},{" "}
+                    {this.state.APIData.dating.presentingDate}
                   </p>
-                  <p style={meta}>{this.state.APIdata.materials[0]}</p>
+                  <p style={meta}>{this.state.APIData.materials[0]}</p>
                 </div>
                 <p style={artworkDescription}>
-                  {this.state.APIdata.plaqueDescriptionEnglish}
+                  {this.state.APIData.plaqueDescriptionEnglish
+                    ? this.state.APIData.plaqueDescriptionEnglish
+                    : this.state.APIData.label.description}
                 </p>
               </div>
               <div style={{ ...css.beigeBg, ...moreContainer }}>
                 <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-                <h3 style={{ ...css.title, ...moreTitle }}>{}</h3>
-                <div style={cardsContainer}>
-                  <Card
-                    fontSize={1.8}
-                    color={"orange"}
-                    title={"Johannes Wtenbogaert"}
-                  />
-                  <Card
-                    fontSize={1.8}
-                    color={"orange"}
-                    title={"Johannes Wtenbogaert"}
-                  />
-                  <Card
-                    fontSize={1.8}
-                    color={"orange"}
-                    title={"Johannes Wtenbogaert"}
-                  />
-                </div>
+                <h3 style={{ ...css.title, ...moreTitle }}>
+                  {this.state.APIData.principalOrFirstMaker}
+                </h3>
+                <div style={cardsContainer}>{this.createCards()}</div>
               </div>
             </div>
           </>
@@ -175,7 +196,7 @@ const artworkDescription: CSSProperties = {
 };
 
 const moreContainer: CSSProperties = {
-  padding: "3em 5.9rem 5rem 5.9rem",
+  padding: "3em 5.9rem 8rem 5.9rem",
 };
 
 const moreTitle: CSSProperties = {
