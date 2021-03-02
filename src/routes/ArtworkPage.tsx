@@ -3,14 +3,16 @@ import * as css from "../css";
 import Header from "../components/header";
 import Button from "../components/button";
 import Card from "../components/card";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { fetchSearchData, fetchObjectData } from "../helper";
 
 interface MatchParams {
   object: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteComponentProps<MatchParams> {
+  width: number;
+}
 
 interface State {
   object: string;
@@ -92,8 +94,7 @@ class ArtworkPage extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(this.state.APIData);
-    throw new Error("error");
+    console.log("artwork: " + this.props.width);
     return (
       <>
         {this.state.mainDataLoading ? (
@@ -251,4 +252,4 @@ const cardsContainer: CSSProperties = {
   gridAutoRows: "20rem",
 };
 
-export default ArtworkPage;
+export default withRouter(ArtworkPage);

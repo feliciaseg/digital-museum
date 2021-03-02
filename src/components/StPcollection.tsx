@@ -100,11 +100,10 @@ export default class Collection extends Component<Props, State> {
   createCards() {}
 
   render() {
-    console.log(this.state.object1);
     return (
       <>
         {this.state.loading ? (
-          <p style = {{...beigeBg, margin: 0,}}>Loading...</p>
+          <p style={{ ...beigeBg, margin: 0 }}>Loading...</p>
         ) : (
           <div style={{ ...beigeBg, ...container }}>
             <h2 style={h2}>SOME OF OUR COLLECTIONS</h2>
