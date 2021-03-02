@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 
 const style: CSSProperties = {
   fontSize: "1,5rem",
@@ -17,7 +18,14 @@ interface Props {
 function Header(props: Props) {
   return (
     <header style = {{flex: "1", height: props.h, backgroundColor: props.c}}>
+      <Link
+          style={{ textDecoration: "none", color: "inherit" }}
+          to={{
+            pathname: `/`,
+          }}
+        >
       <span style = {style}>Rijksmuseet</span>
+      </Link>
     </header>
   );
 }

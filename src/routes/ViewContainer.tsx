@@ -15,13 +15,15 @@ class ViewContainer extends React.Component<Props, State> {
     return (
       <Switch>
         <Route exact path="/" component={StartPage} />
+
         <Route path="/search/:search?" component={SearchPage} />
         <ErrorBoundary>
           <Route exact path="/artwork/:object" component={ArtworkPage} />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Route exact path="/collection" component={CollectionsPage} />
+          <Route exact path="/collection/:collection" component={CollectionsPage} />
         </ErrorBoundary>
+
         <h2> Page not found</h2>
       </Switch>
     );

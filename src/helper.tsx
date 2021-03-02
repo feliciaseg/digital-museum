@@ -28,3 +28,10 @@ export async function fetchObjectData(object: string) {
   const data = await response.json();
   return data.artObject;
 }
+
+export async function fetchMakerData(maker: string) {
+  const url: string = `https://www.rijksmuseum.nl/api/en/collection?key=dZz20am8&involvedMaker=${maker}&imgonly=true`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.artObjects;
+}
