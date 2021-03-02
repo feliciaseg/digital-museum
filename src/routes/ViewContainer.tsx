@@ -1,33 +1,36 @@
-import React, { Suspense } from "react";
 import StartPage from "../routes/StartPage";
 import CollectionsPage from "../routes/CollectionsPage";
 import ArtworkPage from "../routes/ArtworkPage";
 import SearchPage from "../routes/SearchPage";
 import { Route, Switch } from "react-router-dom";
 import ErrorBoundary from "../components/errorBoundary";
+import useWindowDimensions from "../components/windowDimensions";
 
-interface Props {}
+function ViewContainer() {
+  const width = useWindowDimensions();
+  return (
+    <Switch>
+      <Route exact path="/">
+        <StartPage width={width} />
+      </Route>
 
-interface State {}
-
-class ViewContainer extends React.Component<Props, State> {
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={StartPage} />
-
-        <Route path="/search/:search?" component={SearchPage} />
+      <Route path="/search/:search?">
+        <SearchPage width={width} />
+      </Route>
+      <Route exact path="/artwork/:object">
         <ErrorBoundary>
-          <Route exact path="/artwork/:object" component={ArtworkPage} />
+          <ArtworkPage width={width} />
         </ErrorBoundary>
+      </Route>
+      <Route exact path="/collection/:collection">
         <ErrorBoundary>
-          <Route exact path="/collection/:collection" component={CollectionsPage} />
+          <CollectionsPage width={width} />
         </ErrorBoundary>
+      </Route>
 
-        <h2> Page not found</h2>
-      </Switch>
-    );
-  }
+      <h2> Page not found</h2>
+    </Switch>
+  );
 }
 
 export default ViewContainer;
