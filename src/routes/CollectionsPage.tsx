@@ -80,50 +80,115 @@ class CollectionsPage extends React.Component<
   }
 
   render() {
-    console.log("collection: " + this.props.width);
-    return (
-      <>
-        {this.state.loading ? (
-          <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
-            {" "}
-            Loading.....
-          </div> //Här kanske vi skickar in en ''loading'' komponent istället?
-        ) : (
-          <>
-            <Header h="18.8rem" c="#E2D0BA"></Header>
-
-            <div style={{ ...container, ...orangeBg }}>
-              <h3 style={{ ...title, ...collectionTitle }}>
-                {this.props.match.params.collection.toUpperCase()}
-              </h3>
-              <p style={p}>{this.state.APIdata.length} ARTWORKS</p>
-              <div style={cardWrapper}>{this.createCards()}</div>
-            </div>
-          </>
-        )}
-      </>
-    );
+    if (this.props.width > 1024) {
+      return (
+        <>
+          {this.state.loading ? (
+            <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
+              {" "}
+              Loading.....
+            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+          ) : (
+            <>
+              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <div style={{ ...container, ...desktopContainer, ...orangeBg }}>
+                <h3 style={{ ...title, ...desktopTitle, ...collectionTitle }}>
+                  {this.props.match.params.collection.toUpperCase()}
+                </h3>
+                <p style={p}>{this.state.APIdata.length} ARTWORKS</p>
+                <div style={cardWrapper}>{this.createCards()}</div>
+              </div>
+            </>
+          )}
+        </>
+      );
+    } else if (this.props.width > 768) {
+      return (
+        <>
+          {this.state.loading ? (
+            <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
+              {" "}
+              Loading.....
+            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+          ) : (
+            <>
+              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <div style={{ ...container, ...tabletContainer, ...orangeBg }}>
+                <h3 style={{ ...title, ...tabletTitle, ...collectionTitle }}>
+                  {this.props.match.params.collection.toUpperCase()}
+                </h3>
+                <p style={p}>{this.state.APIdata.length} ARTWORKS</p>
+                <div style={cardWrapper}>{this.createCards()}</div>
+              </div>
+            </>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {this.state.loading ? (
+            <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
+              {" "}
+              Loading.....
+            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+          ) : (
+            <>
+              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <div style={{ ...container, ...mobileContainer, ...orangeBg }}>
+                <h3 style={{ ...title, ...collectionTitle, ...mobileTitle }}>
+                  {this.props.match.params.collection.toUpperCase()}
+                </h3>
+                <p style={p}>{this.state.APIdata.length} ARTWORKS</p>
+                <div style={cardWrapper}>{this.createCards()}</div>
+              </div>
+            </>
+          )}
+        </>
+      );
+    }
   }
 }
 
 const container: CSSProperties = {
-  padding: "0 5.75rem 8rem 5.75rem",
   flex: 1,
   width: "100%",
-  //padding: "0 5.75rem 0 5.75rem",
+  paddingBottom: "8rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
 };
 
+const mobileContainer: CSSProperties = {
+  padding: "0 2rem 0 2rem",
+};
+
+const tabletContainer: CSSProperties = {
+  padding: "0 3.5rem 0 3.5rem",
+};
+
+const desktopContainer: CSSProperties = {
+  padding: "0 5.75rem 0 5.75rem",
+};
+
 const p: CSSProperties = {
   fontWeight: 700,
-  fontSize: 24,
   alignSelf: "flex-end",
 };
 
+const mobileTitle: CSSProperties = {
+  fontSize: "3rem",
+};
+
+const tabletTitle: CSSProperties = {
+  fontSize: "5rem",
+};
+
+const desktopTitle: CSSProperties = {
+  fontSize: "9rem",
+};
+
 const collectionTitle: CSSProperties = {
-  fontSize: "8rem",
   margin: "-5rem 0 0 0",
 };
 
@@ -131,7 +196,8 @@ const cardWrapper: CSSProperties = {
   display: "grid",
   width: "100%",
   height: "auto",
-  rowGap: "6rem",
+  marginTop: "2rem",
+  rowGap: "5rem",
   columnGap: "2rem",
   gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
   gridAutoRows: "20rem",
