@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import Header from "../components/header";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
 import { blackBg, yellowBg } from "../css";
 import Button from "../components/button";
@@ -9,7 +9,9 @@ interface MatchParams {
   search: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteComponentProps<MatchParams> {
+  width: number;
+}
 
 interface State {
   inputValue: string;
@@ -84,6 +86,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   }
 
   render() {
+    console.log("search: " + this.props.width);
     return (
       <>
         {this.state.loading ? (
@@ -197,4 +200,4 @@ const text: CSSProperties = {
   fontSize: "1.5rem",
 };
 
-export default SearchPage;
+export default withRouter(SearchPage);

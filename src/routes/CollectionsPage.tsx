@@ -1,15 +1,17 @@
 import React, { CSSProperties } from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
 import Header from "../components/header";
-import { beigeBg, orangeBg } from "../css";
-import { fetchMakerData} from "../helper";
+import { beigeBg, orangeBg, title } from "../css";
+import { fetchMakerData } from "../helper";
 //import { RouteComponentProps } from "react-router-dom"
 interface MatchParams {
   collection: string;
 }
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteComponentProps<MatchParams> {
+  width: number;
+}
 
 interface State {
   loading: boolean;
@@ -51,7 +53,7 @@ class CollectionsPage extends React.Component<
   createCards() {
     let cards: JSX.Element[] = [];
     for (let i = 0; i < this.state.APIdata.length; i++) {
-      if ( i === 9 ){
+      if (i === 9) {
         break;
       }
       let objectTitle: string = this.state.APIdata[i].title;
@@ -65,89 +67,74 @@ class CollectionsPage extends React.Component<
           }}
           key={i}
         >
-          <div style={cardContainer}>
           <Card
             color="yellow"
-            fontSize={2}
+            fontSize={1.6}
             title={objectTitle}
             imgSrc={image}
           />
-          </div>
         </Link>
       );
     }
     return cards;
   }
 
-
   render() {
-    console.log(this.state.APIdata)
+    console.log("collection: " + this.props.width);
     return (
       <>
-       {this.state.loading ? (
-          <div style = {{...beigeBg, height: "100%", width: "100%" }}> Loading.....</div> //Här kanske vi skickar in en ''loading'' komponent istället?
+        {this.state.loading ? (
+          <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
+            {" "}
+            Loading.....
+          </div> //Här kanske vi skickar in en ''loading'' komponent istället?
         ) : (
-        <>
-          <Header h="18.8rem" c="#E2D0BA"></Header>
-         
-         
-          <div style={{ ...container, ...orangeBg }}>
-            <h3 style={title}>{this.props.match.params.collection.toUpperCase()}</h3>
-            <p style = {p}>{this.state.APIdata.length} ARTWORKS</p>
-            <div style={cardWrapper}>{this.createCards()}</div>
-          </div>
-          
+          <>
+            <Header h="18.8rem" c="#E2D0BA"></Header>
+
+            <div style={{ ...container, ...orangeBg }}>
+              <h3 style={{ ...title, ...collectionTitle }}>
+                {this.props.match.params.collection.toUpperCase()}
+              </h3>
+              <p style={p}>{this.state.APIdata.length} ARTWORKS</p>
+              <div style={cardWrapper}>{this.createCards()}</div>
+            </div>
           </>
-        )
-        }
+        )}
       </>
     );
   }
 }
 
 const container: CSSProperties = {
+  padding: "0 5.75rem 8rem 5.75rem",
   flex: 1,
-  height: "112.7rem",
+  width: "100%",
   //padding: "0 5.75rem 0 5.75rem",
-  display:"flex",
+  display: "flex",
   flexDirection: "column",
-  alignItems: "center"
+  alignItems: "center",
 };
 
 const p: CSSProperties = {
-  padding: "0 5.75rem 0 5.75rem",
-  position: "absolute",
-  top: 451,
-  right: 91,
   fontWeight: 700,
   fontSize: 24,
+  alignSelf: "flex-end",
+};
 
-
-}
-
-const title: CSSProperties = {
-  padding: "0 5.75rem 0 5.75rem",
-  fontSize: "6rem",
-  position: "absolute",
-  top: 130,
-  wordBreak: "break-word",
-  fontWeight: 900,
+const collectionTitle: CSSProperties = {
+  fontSize: "8rem",
+  margin: "-5rem 0 0 0",
 };
 
 const cardWrapper: CSSProperties = {
-  padding: "14.1rem 5.75rem 14.5rem 5.75rem",
-  display: "flex",
-  height: "94rem",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-  alignContent: "space-between",
+  display: "grid",
+  width: "100%",
+  height: "auto",
+  rowGap: "6rem",
+  columnGap: "2rem",
+  gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
+  gridAutoRows: "20rem",
 };
 
-const cardContainer: CSSProperties = {
-  height: "29.3rem",
-  width: "24.5rem",
-  paddingBottom: "5rem",
-};
-
-export default CollectionsPage;
+export default withRouter(CollectionsPage);
