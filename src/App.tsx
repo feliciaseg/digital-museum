@@ -1,20 +1,14 @@
-
 import React from "react";
-import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import ViewContainer from "./routes/ViewContainer";
-
-interface Props {}
-
-interface State {}
-class App extends React.Component<Props, State> {
-  // constructor(props: Props) {
-  //   super(props);
-  // }
-
+import ErrorBoundary from "./components/errorBoundary";
+class App extends React.Component {
   render() {
     return (
       <Router>
-        <ViewContainer/>
+        <ErrorBoundary>
+          <ViewContainer />
+        </ErrorBoundary>
       </Router>
     );
   }
