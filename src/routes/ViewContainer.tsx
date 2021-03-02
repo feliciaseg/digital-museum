@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import StartPage from "../routes/StartPage";
-import ArtworkPage from "../routes/ArtworkPage";
 import CollectionsPage from "../routes/CollectionsPage";
+import ArtworkPage from "../routes/ArtworkPage";
 import SearchPage from "../routes/SearchPage";
 import { Route, Switch } from "react-router-dom";
+import ErrorBoundary from "../components/errorBoundary";
 
 interface Props {}
 
@@ -14,9 +15,13 @@ class ViewContainer extends React.Component<Props, State> {
     return (
       <Switch>
         <Route exact path="/" component={StartPage} />
-        <Route exact path="/collection" component={CollectionsPage} />
-        <Route  path="/search/:search?" component={SearchPage} />
-        <Route exact path="/artwork/:object" component={ArtworkPage} />
+        <Route path="/search/:search?" component={SearchPage} />
+        <ErrorBoundary>
+          <Route exact path="/artwork/:object" component={ArtworkPage} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Route exact path="/collection" component={CollectionsPage} />
+        </ErrorBoundary>
         <h2> Page not found</h2>
       </Switch>
     );
