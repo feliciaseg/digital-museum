@@ -93,10 +93,25 @@ class ArtworkPage extends React.Component<Props, State> {
 
   render() {
     console.log(this.state.APIData);
+    throw new Error("error");
     return (
       <>
         {this.state.mainDataLoading ? (
-          <p>Loading...</p>
+          <>
+            <Header h="8.375rem" c="#FAFF70"></Header>
+            <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
+              <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
+                <Button
+                  type="goBack"
+                  text="back"
+                  backgroundColor="black"
+                  textColor="orange"
+                  fontSize={1.2}
+                  onClick={this.navigateBack}
+                />
+              </div>
+            </div>
+          </>
         ) : (
           <>
             <Header h="8.375rem" c="#FAFF70"></Header>
@@ -131,17 +146,31 @@ class ArtworkPage extends React.Component<Props, State> {
                     : this.state.APIData.label.description}
                 </p>
               </div>
-              <div style={{ ...css.beigeBg, ...moreContainer }}>
-                <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-                <h3 style={{ ...css.title, ...moreTitle }}>
-                  {this.state.APIData.principalOrFirstMaker}
-                </h3>
-                {this.state.cardsDataLoading ? (
-                  <p>Loading...</p>
-                ) : (
+              {this.state.cardsDataLoading ? (
+                <div style={{ ...css.beigeBg, ...moreContainer }}>
+                  <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                  <h3 style={{ ...css.title, ...moreTitle }}>
+                    {this.state.APIData.principalOrFirstMaker}
+                  </h3>
+                  <div
+                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                  ></div>
+                  <div
+                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                  ></div>
+                  <div
+                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                  ></div>
+                </div>
+              ) : (
+                <div style={{ ...css.beigeBg, ...moreContainer }}>
+                  <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                  <h3 style={{ ...css.title, ...moreTitle }}>
+                    {this.state.APIData.principalOrFirstMaker}
+                  </h3>
                   <div style={cardsContainer}>{this.createCards()}</div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </>
         )}
