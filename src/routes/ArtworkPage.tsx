@@ -32,6 +32,7 @@ class ArtworkPage extends React.Component<Props, State> {
       mainDataLoading: true,
       cardsDataLoading: true,
     };
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   async componentDidMount() {
@@ -63,7 +64,6 @@ class ArtworkPage extends React.Component<Props, State> {
   }
 
   navigateBack() {
-    // Funkar inte???
     window.history.back();
   }
 
@@ -99,7 +99,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 5.75rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -115,7 +122,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 5.75rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -187,7 +201,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 3.5rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -203,7 +224,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 3.5rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -273,7 +301,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 2rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -289,7 +324,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 2rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
