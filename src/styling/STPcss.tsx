@@ -193,12 +193,7 @@ export const cardContainerS: CSSProperties = {
   width: 315, 
   height: "22.8rem",
   flex: "0 0 auto",
-<<<<<<< HEAD:src/STPcss.tsx
-  padding: "0 0 2.3rem 0rem",
-  //left: "5.9rem",
-=======
   padding: "0 0 2.3rem 0rem"
->>>>>>> master:src/styling/STPcss.tsx
 };
 
 export const cardWrapperL: CSSProperties = {
