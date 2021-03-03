@@ -152,22 +152,21 @@ class CollectionsPage extends React.Component<
 const container: CSSProperties = {
   flex: 1,
   width: "100%",
-  paddingBottom: "8rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
 };
 
 const mobileContainer: CSSProperties = {
-  padding: "0 2rem 0 2rem",
+  padding: "0 2rem 8rem 2rem",
 };
 
 const tabletContainer: CSSProperties = {
-  padding: "0 3.5rem 0 3.5rem",
+  padding: "0 3.5rem 8rem 3.5rem",
 };
 
 const desktopContainer: CSSProperties = {
-  padding: "0 5.75rem 0 5.75rem",
+  padding: "0 5.75rem 8rem 5.75rem",
 };
 
 const p: CSSProperties = {
