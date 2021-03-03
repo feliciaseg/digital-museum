@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import Header from "../components/header";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
-import { blackBg, orangeTxt, yellowBg } from "../css";
+import { blackBg, orangeTxt, yellowBg } from "../styling/css";
 import Button from "../components/button";
 
 interface MatchParams {
@@ -57,7 +57,6 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         .principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
-      let fontsize
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
@@ -368,18 +367,6 @@ const inputL: CSSProperties = {
   padding: 0,
 };
 
-const inputM: CSSProperties = {
-  outline: "none",
-  border: 3,
-  borderStyle: "solid",
-  borderColor: "#FF9C5B",
-  height: "3.4rem",
-  width: "25rem",
-  color: "#FF9C5B",
-  fontWeight: 700,
-  fontSize: "1.5rem",
-  paddingBottom: 0,
-};
 
 const inputS: CSSProperties = {
   outline: "none",

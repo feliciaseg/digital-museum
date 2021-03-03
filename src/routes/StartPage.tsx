@@ -1,10 +1,10 @@
 import React from "react";
-import * as css from "../STPcss";
+import * as css from "../styling/STPcss";
 import { Link, RouteComponentProps} from "react-router-dom";
 import { fetchObjectData } from "../helper";
 import Button from "../components/button";
 import Header from "../components/header";
-import { beigeBg, yellowBg } from "../css";
+import { beigeBg, yellowBg } from "../styling/css";
 import Card from "../components/card";
 
 interface Props {

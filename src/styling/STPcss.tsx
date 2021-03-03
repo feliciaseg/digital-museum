@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-//LANDING CSS
+//START PAGE CSS
 
 export const yellowBoxL: CSSProperties = {
   flex: 1,
