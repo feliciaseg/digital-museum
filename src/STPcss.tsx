@@ -109,6 +109,7 @@ export const inputS: CSSProperties = {
   fontSize: "0.8rem",
   padding: 0,
   marginBottom: "0.9rem",
+
 };
 
 export const pL: CSSProperties = {
@@ -144,6 +145,7 @@ export const searchS: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-evenly",
+
 };
 
 /* ----- COLLECTION CSS ----- */
@@ -240,4 +242,5 @@ export const h2S: CSSProperties = {
   fontWeight: 900,
   fontSize: "1.75rem",
   padding: "1rem 1.25rem 1rem 1.25rem",
+
 };
