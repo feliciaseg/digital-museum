@@ -20,7 +20,6 @@ interface State {
   searchData: any;
   mainDataLoading: boolean;
   cardsDataLoading: boolean;
-  reload: boolean;
 }
 
 class ArtworkPage extends React.Component<Props, State> {
@@ -32,8 +31,8 @@ class ArtworkPage extends React.Component<Props, State> {
       searchData: {},
       mainDataLoading: true,
       cardsDataLoading: true,
-      reload: false,
     };
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   async componentDidMount() {
@@ -65,7 +64,6 @@ class ArtworkPage extends React.Component<Props, State> {
   }
 
   navigateBack() {
-    // Funkar inte???
     window.history.back();
   }
 
@@ -101,7 +99,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 5.75rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -117,7 +122,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 5.75rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -190,7 +202,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 3.5rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -206,7 +225,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 3.5rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -277,7 +303,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 2rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -293,7 +326,14 @@ class ArtworkPage extends React.Component<Props, State> {
             <>
               <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
-                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 100,
+                    float: "right",
+                    margin: "2rem 2rem 0 0",
+                  }}
+                >
                   <Button
                     type="goBack"
                     text="back"
@@ -468,7 +508,7 @@ const cardsContainer: CSSProperties = {
   width: "100%",
   height: "auto",
   marginTop: "2rem",
-  gap: "3rem 1rem",
+  gap: "5rem 1rem",
   gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
   gridAutoRows: "20rem",
 };

@@ -53,14 +53,16 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       if (i === 6) {
         break;
       }
-      let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
+      let artist: string = this.state.APIdata.artObjects[i]
+        .principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={{pathname: `/artwork/${objectNumber}`}}
-          key={i}>
+          to={{ pathname: `/artwork/${objectNumber}` }}
+          key={i}
+        >
           <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
         </Link>
       );
@@ -72,7 +74,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    console.log("how many times is it clicked")
+    console.log("how many times is it clicked");
     // await this.setState({ inputValue: this.state.newSearch });
     // await this.fetchData();
     // this.render();
@@ -80,12 +82,11 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
 
   /** Checks current width and renders so that it fits. */
   render() {
-    if (this.props.width > 1023) {
+    if (this.props.width > 1024) {
       return (
         <>
           {this.state.loading ? (
             <div>
-
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
 
               <div
@@ -121,12 +122,12 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                     style={{ ...blackBg, ...inputL }}
                     type="text"
                   />
-                  {/* <Link
+                  <Link
                     style={{ textDecoration: "none" }}
                     to={{
                       pathname: `/search/${this.state.newSearch}`,
                     }}
-                  > */}
+                  >
                     <Button
                       type="search"
                       text="SEARCH"
@@ -135,7 +136,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                       fontSize={1.5}
                       onClick={this.handleButtonClick}
                     />
-                  {/* </Link> */}
+                  </Link>
                 </div>
                 <div style={textL}>
                   <p style={{ margin: 0 }}>
@@ -167,7 +168,6 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
-
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
 
               <div
@@ -200,7 +200,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                     onChange={(event) =>
                       this.setState({ newSearch: event.target.value })
                     }
-                    style={{ ...blackBg, ...inputL }}
+                    style={{ ...blackBg, ...inputM }}
                     type="text"
                   />
                   <Link
@@ -412,7 +412,20 @@ const inputL: CSSProperties = {
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "1.5rem",
-  padding: 0,
+  padding: "0 0.5rem",
+};
+
+const inputM: CSSProperties = {
+  outline: "none",
+  border: 3,
+  borderStyle: "solid",
+  borderColor: "#FF9C5B",
+  height: "3.4rem",
+  width: "25rem",
+  color: "#FF9C5B",
+  fontWeight: 700,
+  fontSize: "1.5rem",
+  padding: "0 0.5rem",
 };
 
 const inputS: CSSProperties = {
@@ -425,7 +438,7 @@ const inputS: CSSProperties = {
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "0.8rem",
-  padding: 0,
+  padding: "0 0.5rem",
 };
 
 const textL: CSSProperties = {
