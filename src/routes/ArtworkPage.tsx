@@ -20,7 +20,6 @@ interface State {
   searchData: any;
   mainDataLoading: boolean;
   cardsDataLoading: boolean;
-  reload: boolean;
 }
 
 class ArtworkPage extends React.Component<Props, State> {
@@ -32,7 +31,6 @@ class ArtworkPage extends React.Component<Props, State> {
       searchData: {},
       mainDataLoading: true,
       cardsDataLoading: true,
-      reload: false,
     };
   }
 

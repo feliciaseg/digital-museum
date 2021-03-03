@@ -13,7 +13,6 @@ function ViewContainer() {
       <Route exact path="/">
         <StartPage width={width} />
       </Route>
-
       <Route path="/search/:search?">
         <SearchPage width={width} />
       </Route>
@@ -27,7 +26,6 @@ function ViewContainer() {
           <CollectionsPage width={width} />
         </ErrorBoundary>
       </Route>
-
       <h2> Page not found</h2>
     </Switch>
   );

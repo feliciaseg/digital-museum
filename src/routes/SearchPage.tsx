@@ -66,9 +66,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           }}
           key={i}
         >
-          {/* <div style={cardContainer}> */}
           <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
-          {/* </div> */}
         </Link>
       );
     }
@@ -86,7 +84,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
 
   /** Checks current width and renders so that it fits. */
   render() {
-    if (this.props.width > 1023) {
+    if (this.props.width > 1024) {
       return (
         <>
           {this.state.loading ? (

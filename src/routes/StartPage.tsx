@@ -109,7 +109,7 @@ export default class StartPage extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.props.width > 1023) {
+    if (this.props.width > 1024) {
       return (
         <>
           {this.state.loading ? (

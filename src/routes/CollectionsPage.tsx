@@ -4,7 +4,6 @@ import Card from "../components/card";
 import Header from "../components/header";
 import { beigeBg, orangeBg, title } from "../css";
 import { fetchMakerData } from "../helper";
-//import { RouteComponentProps } from "react-router-dom"
 interface MatchParams {
   collection: string;
 }
@@ -87,7 +86,7 @@ class CollectionsPage extends React.Component<
             <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
               {" "}
               Loading.....
-            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+            </div>
           ) : (
             <>
               <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
@@ -109,7 +108,7 @@ class CollectionsPage extends React.Component<
             <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
               {" "}
               Loading.....
-            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+            </div>
           ) : (
             <>
               <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
@@ -131,7 +130,7 @@ class CollectionsPage extends React.Component<
             <div style={{ ...beigeBg, height: "100%", width: "100%" }}>
               {" "}
               Loading.....
-            </div> //Här kanske vi skickar in en ''loading'' komponent istället?
+            </div>
           ) : (
             <>
               <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
