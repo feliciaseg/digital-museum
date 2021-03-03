@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import Header from "../components/header";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
-import { blackBg, orangeTxt, yellowBg } from "../css";
+import { blackBg, orangeTxt, yellowBg } from "../styling/css";
 import Button from "../components/button";
 
 interface MatchParams {
@@ -57,13 +57,10 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         .principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
-      let fontsize;
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={{
-            pathname: `/artwork/${objectNumber}`,
-          }}
+          to={{ pathname: `/artwork/${objectNumber}` }}
           key={i}
         >
           <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
@@ -77,9 +74,10 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    await this.setState({ inputValue: this.state.newSearch });
-    await this.fetchData();
-    this.render();
+    console.log("how many times is it clicked");
+    // await this.setState({ inputValue: this.state.newSearch });
+    // await this.fetchData();
+    // this.render();
   }
 
   /** Checks current width and renders so that it fits. */
@@ -90,6 +88,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -170,6 +169,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -200,7 +200,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                     onChange={(event) =>
                       this.setState({ newSearch: event.target.value })
                     }
-                    style={{ ...blackBg, ...inputL }}
+                    style={{ ...blackBg, ...inputM }}
                     type="text"
                   />
                   <Link

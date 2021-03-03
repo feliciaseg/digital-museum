@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
 import Header from "../components/header";
-import { beigeBg, orangeBg, title } from "../css";
+import { beigeBg, orangeBg, title } from "../styling/css";
 import { fetchMakerData } from "../helper";
 interface MatchParams {
   collection: string;

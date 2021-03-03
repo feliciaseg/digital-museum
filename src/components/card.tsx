@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import * as css from "../css";
+import * as css from "../styling/css";
 import { translateColor } from "../helper";
 
 export default function Card(props: Props) {
