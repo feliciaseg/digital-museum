@@ -99,7 +99,7 @@ class ArtworkPage extends React.Component<Props, State> {
         <>
           {this.state.mainDataLoading ? (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
                 <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
                   <Button
@@ -115,7 +115,7 @@ class ArtworkPage extends React.Component<Props, State> {
             </>
           ) : (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
                 <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
                   <Button
@@ -187,7 +187,7 @@ class ArtworkPage extends React.Component<Props, State> {
         <>
           {this.state.mainDataLoading ? (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
                 <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
                   <Button
@@ -203,7 +203,7 @@ class ArtworkPage extends React.Component<Props, State> {
             </>
           ) : (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
                 <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
                   <Button
@@ -273,7 +273,7 @@ class ArtworkPage extends React.Component<Props, State> {
         <>
           {this.state.mainDataLoading ? (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
                 <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
                   <Button
@@ -289,7 +289,7 @@ class ArtworkPage extends React.Component<Props, State> {
             </>
           ) : (
             <>
-              <Header h="8.375rem" c="#FAFF70"></Header>
+              <Header h="8.375rem" c="#FAFF70" windowWidth={this.props.width} />
               <div style={{ ...css.orangeBg, ...hero }}>
                 <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
                   <Button

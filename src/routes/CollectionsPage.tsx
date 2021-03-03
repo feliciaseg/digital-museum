@@ -90,7 +90,7 @@ class CollectionsPage extends React.Component<
             </div> //Här kanske vi skickar in en ''loading'' komponent istället?
           ) : (
             <>
-              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
               <div style={{ ...container, ...desktopContainer, ...orangeBg }}>
                 <h3 style={{ ...title, ...desktopTitle, ...collectionTitle }}>
                   {this.props.match.params.collection.toUpperCase()}
@@ -112,7 +112,7 @@ class CollectionsPage extends React.Component<
             </div> //Här kanske vi skickar in en ''loading'' komponent istället?
           ) : (
             <>
-              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
               <div style={{ ...container, ...tabletContainer, ...orangeBg }}>
                 <h3 style={{ ...title, ...tabletTitle, ...collectionTitle }}>
                   {this.props.match.params.collection.toUpperCase()}
@@ -134,7 +134,7 @@ class CollectionsPage extends React.Component<
             </div> //Här kanske vi skickar in en ''loading'' komponent istället?
           ) : (
             <>
-              <Header h="18.8rem" c="#E2D0BA"></Header>
+              <Header h="18.8rem" c="#E2D0BA" windowWidth={this.props.width} />
               <div style={{ ...container, ...mobileContainer, ...orangeBg }}>
                 <h3 style={{ ...title, ...collectionTitle, ...mobileTitle }}>
                   {this.props.match.params.collection.toUpperCase()}
