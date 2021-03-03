@@ -94,121 +94,331 @@ class ArtworkPage extends React.Component<Props, State> {
   }
 
   render() {
-    console.log("artwork: " + this.props.width);
-    return (
-      <>
-        {this.state.mainDataLoading ? (
-          <>
-            <Header h="8.375rem" c="#FAFF70"></Header>
-            <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
-              <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
-                <Button
-                  type="goBack"
-                  text="back"
-                  backgroundColor="black"
-                  textColor="orange"
-                  fontSize={1.2}
-                  onClick={this.navigateBack}
-                />
+    if (this.props.width > 1024) {
+      return (
+        <>
+          {this.state.mainDataLoading ? (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
+                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
+                </div>
               </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <Header h="8.375rem" c="#FAFF70"></Header>
-            <div style={{ ...css.orangeBg, ...hero }}>
-              <div style={{ float: "right", margin: "2rem 5.9rem 0 0" }}>
-                <Button
-                  type="goBack"
-                  text="back"
-                  backgroundColor="black"
-                  textColor="orange"
-                  fontSize={1.2}
-                  onClick={this.navigateBack}
-                />
+            </>
+          ) : (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, ...hero }}>
+                <div style={{ float: "right", margin: "2rem 5.75rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
+                </div>
+                <img
+                  style={{ ...heroImg, ...desktopHero }}
+                  src={this.state.APIData.webImage.url}
+                ></img>
               </div>
-              <img style={heroImg} src={this.state.APIData.webImage.url}></img>
-            </div>
-            <div style={{ ...css.blueBg }}>
-              <div style={descriptionContainer}>
-                <h2 style={{ ...css.title, ...artworkTitle }}>
-                  {this.state.APIData.title}
-                </h2>
-                <div style={metaContainer}>
-                  <p style={meta}>
-                    {this.state.APIData.principalOrFirstMaker},{" "}
-                    {this.state.APIData.dating.presentingDate}
+              <div style={{ ...css.blueBg }}>
+                <div style={{ ...descriptionContainer, ...desktopDescription }}>
+                  <h2
+                    style={{ ...css.title, ...desktopTitle, ...artworkTitle }}
+                  >
+                    {this.state.APIData.title}
+                  </h2>
+                  <div style={metaContainer}>
+                    <p style={meta}>
+                      {this.state.APIData.principalOrFirstMaker},{" "}
+                      {this.state.APIData.dating.presentingDate}
+                    </p>
+                    <p style={meta}>{this.state.APIData.materials[0]}</p>
+                  </div>
+                  <p style={artworkDescription}>
+                    {this.state.APIData.plaqueDescriptionEnglish
+                      ? this.state.APIData.plaqueDescriptionEnglish
+                      : this.state.APIData.label.description}
                   </p>
-                  <p style={meta}>{this.state.APIData.materials[0]}</p>
                 </div>
-                <p style={artworkDescription}>
-                  {this.state.APIData.plaqueDescriptionEnglish
-                    ? this.state.APIData.plaqueDescriptionEnglish
-                    : this.state.APIData.label.description}
-                </p>
+                {this.state.cardsDataLoading ? (
+                  <div style={{ ...css.beigeBg, ...desktopMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                  </div>
+                ) : (
+                  <div style={{ ...css.beigeBg, ...desktopMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div style={cardsContainer}>{this.createCards()}</div>
+                  </div>
+                )}
               </div>
-              {this.state.cardsDataLoading ? (
-                <div style={{ ...css.beigeBg, ...moreContainer }}>
-                  <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-                  <h3 style={{ ...css.title, ...moreTitle }}>
-                    {this.state.APIData.principalOrFirstMaker}
-                  </h3>
-                  <div
-                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
-                  ></div>
-                  <div
-                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
-                  ></div>
-                  <div
-                    style={{ ...css.orangeBg, width: "100%", height: "100%" }}
-                  ></div>
+            </>
+          )}
+        </>
+      );
+    } else if (this.props.width > 768) {
+      return (
+        <>
+          {this.state.mainDataLoading ? (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
+                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
                 </div>
-              ) : (
-                <div style={{ ...css.beigeBg, ...moreContainer }}>
-                  <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
-                  <h3 style={{ ...css.title, ...moreTitle }}>
-                    {this.state.APIData.principalOrFirstMaker}
-                  </h3>
-                  <div style={cardsContainer}>{this.createCards()}</div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, ...hero }}>
+                <div style={{ float: "right", margin: "2rem 3.5rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
                 </div>
-              )}
-            </div>
-          </>
-        )}
-      </>
-    );
+                <img
+                  style={{ ...heroImg, ...tabletHero }}
+                  src={this.state.APIData.webImage.url}
+                ></img>
+              </div>
+              <div style={{ ...css.blueBg }}>
+                <div style={{ ...descriptionContainer, ...tabletDescription }}>
+                  <h2 style={{ ...css.title, ...tabletTitle, ...artworkTitle }}>
+                    {this.state.APIData.title}
+                  </h2>
+                  <div style={metaContainer}>
+                    <p style={meta}>
+                      {this.state.APIData.principalOrFirstMaker},{" "}
+                      {this.state.APIData.dating.presentingDate}
+                    </p>
+                    <p style={meta}>{this.state.APIData.materials[0]}</p>
+                  </div>
+                  <p style={artworkDescription}>
+                    {this.state.APIData.plaqueDescriptionEnglish
+                      ? this.state.APIData.plaqueDescriptionEnglish
+                      : this.state.APIData.label.description}
+                  </p>
+                </div>
+                {this.state.cardsDataLoading ? (
+                  <div style={{ ...css.beigeBg, ...tabletMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                  </div>
+                ) : (
+                  <div style={{ ...css.beigeBg, ...tabletMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div style={cardsContainer}>{this.createCards()}</div>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {this.state.mainDataLoading ? (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, width: "100%", height: "100%" }}>
+                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Header h="8.375rem" c="#FAFF70"></Header>
+              <div style={{ ...css.orangeBg, ...hero }}>
+                <div style={{ float: "right", margin: "2rem 2rem 0 0" }}>
+                  <Button
+                    type="goBack"
+                    text="back"
+                    backgroundColor="black"
+                    textColor="orange"
+                    fontSize={1.2}
+                    onClick={this.navigateBack}
+                  />
+                </div>
+                <img
+                  style={{ ...heroImg, ...mobileHero }}
+                  src={this.state.APIData.webImage.url}
+                ></img>
+              </div>
+              <div style={{ ...css.blueBg }}>
+                <div style={{ ...descriptionContainer, ...mobileDescription }}>
+                  <h2 style={{ ...css.title, ...mobileTitle, ...artworkTitle }}>
+                    {this.state.APIData.title}
+                  </h2>
+                  <div style={metaContainer}>
+                    <p style={meta}>
+                      {this.state.APIData.principalOrFirstMaker},{" "}
+                      {this.state.APIData.dating.presentingDate}
+                    </p>
+                    <p style={meta}>{this.state.APIData.materials[0]}</p>
+                  </div>
+                  <p style={artworkDescription}>
+                    {this.state.APIData.plaqueDescriptionEnglish
+                      ? this.state.APIData.plaqueDescriptionEnglish
+                      : this.state.APIData.label.description}
+                  </p>
+                </div>
+                {this.state.cardsDataLoading ? (
+                  <div style={{ ...css.beigeBg, ...mobileMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                    <div
+                      style={{ ...css.orangeBg, width: "100%", height: "100%" }}
+                    ></div>
+                  </div>
+                ) : (
+                  <div style={{ ...css.beigeBg, ...mobileMore }}>
+                    <h3 style={{ ...css.title, ...moreTitle }}>More work by</h3>
+                    <h3 style={{ ...css.title, ...moreTitle }}>
+                      {this.state.APIData.principalOrFirstMaker}
+                    </h3>
+                    <div style={cardsContainer}>{this.createCards()}</div>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </>
+      );
+    }
   }
 }
 
 const hero: CSSProperties = {
   position: "relative",
   width: "100%",
-  height: "35rem",
+  height: "75vh",
 };
 
 const heroImg: CSSProperties = {
   position: "absolute",
   height: "inherit",
   width: "inherit",
-  padding: "6rem 5.9rem 4rem 5.9rem",
   objectFit: "cover",
   objectPosition: "center",
+};
+
+const mobileHero: CSSProperties = {
+  padding: "6rem 2rem 4rem 2rem",
+};
+
+const tabletHero: CSSProperties = {
+  padding: "6rem 3.5rem 4rem 3.5rem",
+};
+
+const desktopHero: CSSProperties = {
+  padding: "6rem 5.75rem 4rem 5.75rem",
 };
 
 const artworkTitle: CSSProperties = {
   position: "relative",
   width: "100%",
-  margin: "0",
-  fontSize: "4.8rem",
   fontWeight: 900,
-  marginTop: "-8.5rem",
+  margin: "-8.5rem 0 0 0",
   wordBreak: "break-word",
+};
+
+const mobileTitle: CSSProperties = {
+  fontSize: "3rem",
+};
+
+const tabletTitle: CSSProperties = {
+  fontSize: "4rem",
+};
+
+const desktopTitle: CSSProperties = {
+  fontSize: "5rem",
 };
 
 const descriptionContainer: CSSProperties = {
   width: "100%",
   maxWidth: "60rem",
-  padding: "7rem 5.9rem 4rem 5.9rem",
+};
+
+const mobileDescription: CSSProperties = {
+  padding: "7rem 2rem 4rem 2rem",
+};
+
+const tabletDescription: CSSProperties = {
+  padding: "7rem 3.5rem 4rem 3.5rem",
+};
+
+const desktopDescription: CSSProperties = {
+  padding: "7rem 5.75rem 4rem 5.75rem",
 };
 
 const metaContainer: CSSProperties = {
@@ -230,8 +440,16 @@ const artworkDescription: CSSProperties = {
   lineHeight: "1.5",
 };
 
-const moreContainer: CSSProperties = {
-  padding: "3em 5.9rem 8rem 5.9rem",
+const mobileMore: CSSProperties = {
+  padding: "5rem 2rem 8rem 2rem",
+};
+
+const tabletMore: CSSProperties = {
+  padding: "5rem 3.5rem 8rem 3.5rem",
+};
+
+const desktopMore: CSSProperties = {
+  padding: "5rem 5.75rem 8rem 5.75rem",
 };
 
 const moreTitle: CSSProperties = {
