@@ -465,7 +465,7 @@ const cardsContainer: CSSProperties = {
   width: "100%",
   height: "auto",
   marginTop: "2rem",
-  gap: "3rem 1rem",
+  gap: "5rem 1rem",
   gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
   gridAutoRows: "20rem",
 };

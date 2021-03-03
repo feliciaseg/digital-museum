@@ -414,7 +414,7 @@ const inputL: CSSProperties = {
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "1.5rem",
-  padding: 0,
+  padding: "0 0.5rem",
 };
 
 const inputM: CSSProperties = {
@@ -427,7 +427,7 @@ const inputM: CSSProperties = {
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "1.5rem",
-  paddingBottom: 0,
+  padding: "0 0.5rem",
 };
 
 const inputS: CSSProperties = {
@@ -440,7 +440,7 @@ const inputS: CSSProperties = {
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "0.8rem",
-  padding: 0,
+  padding: "0 0.5rem",
 };
 
 const textL: CSSProperties = {

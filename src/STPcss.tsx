@@ -52,7 +52,7 @@ export const landingContainerL: CSSProperties = {
 };
 export const landingContainerM: CSSProperties = {
   position: "absolute",
-  top: "9rem", 
+  top: "9rem",
   left: "3rem",
   display: "flex",
   flex: 1,
@@ -79,7 +79,7 @@ export const inputL: CSSProperties = {
   color: "#262730",
   fontWeight: 300,
   fontSize: "1.5rem",
-  padding: 0,
+  padding: "0 0.5rem",
 };
 
 export const inputM: CSSProperties = {
@@ -94,6 +94,7 @@ export const inputM: CSSProperties = {
   fontWeight: 300,
   fontSize: "1.5rem",
   marginBottom: "1rem",
+  padding: "0 0.5rem",
 };
 
 export const inputS: CSSProperties = {
@@ -107,9 +108,8 @@ export const inputS: CSSProperties = {
   color: "#262730",
   fontWeight: 300,
   fontSize: "0.8rem",
-  padding: 0,
+  padding: "0 0.5rem",
   marginBottom: "0.9rem",
-
 };
 
 export const pL: CSSProperties = {
@@ -138,14 +138,13 @@ export const searchM: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
-  alignItems: "stretch"
+  alignItems: "stretch",
 };
 
 export const searchS: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-evenly",
-
 };
 
 /* ----- COLLECTION CSS ----- */
@@ -187,14 +186,14 @@ export const cardContainerM: CSSProperties = {
   width: 420, //Can't be written in rem for some reason
   height: "25rem",
   flex: "0 0 auto",
-  margin: "0 0 2rem 0rem"
+  margin: "0 0 2rem 0rem",
 };
 
 export const cardContainerS: CSSProperties = {
   width: 315, //Can't be written in rem for some reason
   height: "22.8rem",
   flex: "0 0 auto",
-  padding: "0 0 2.3rem 0rem"
+  padding: "0 0 2.3rem 0rem",
   //left: "5.9rem",
 };
 
@@ -242,5 +241,4 @@ export const h2S: CSSProperties = {
   fontWeight: 900,
   fontSize: "1.75rem",
   padding: "1rem 1.25rem 1rem 1.25rem",
-
 };

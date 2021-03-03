@@ -2,6 +2,8 @@ import React, { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 
 const style: CSSProperties = {
+  position: "absolute",
+  top: "2.5rem",
   fontSize: "1,5rem",
   fontWeight: 900,
   color: "#262730",
@@ -30,8 +32,6 @@ function Header(props: Props) {
     return (
       <header
         style={{
-          display: "flex",
-          alignItems: "center",
           height: props.h,
           backgroundColor: props.c,
         }}
@@ -50,8 +50,6 @@ function Header(props: Props) {
     return (
       <header
         style={{
-          display: "flex",
-          alignItems: "center",
           height: props.h,
           backgroundColor: props.c,
         }}
@@ -70,8 +68,6 @@ function Header(props: Props) {
     return (
       <header
         style={{
-          display: "flex",
-          alignItems: "center",
           height: props.h,
           backgroundColor: props.c,
         }}
