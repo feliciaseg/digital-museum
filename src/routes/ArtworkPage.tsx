@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import * as css from "../css";
+import * as css from "../styling/css";
 import Header from "../components/header";
 import Button from "../components/button";
 import Card from "../components/card";
@@ -130,6 +130,7 @@ class ArtworkPage extends React.Component<Props, State> {
                 <img
                   style={{ ...heroImg, ...desktopHero }}
                   src={this.state.APIData.webImage.url}
+                  alt = ""
                 ></img>
               </div>
               <div style={{ ...css.blueBg }}>
@@ -218,6 +219,7 @@ class ArtworkPage extends React.Component<Props, State> {
                 <img
                   style={{ ...heroImg, ...tabletHero }}
                   src={this.state.APIData.webImage.url}
+                  alt = ""
                 ></img>
               </div>
               <div style={{ ...css.blueBg }}>
@@ -304,6 +306,7 @@ class ArtworkPage extends React.Component<Props, State> {
                 <img
                   style={{ ...heroImg, ...mobileHero }}
                   src={this.state.APIData.webImage.url}
+                  alt=""
                 ></img>
               </div>
               <div style={{ ...css.blueBg }}>

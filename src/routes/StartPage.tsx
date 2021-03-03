@@ -1,10 +1,11 @@
 import React from "react";
-import * as css from "../STPcss";
-import { Link, RouteComponentProps } from "react-router-dom";
+
+import * as css from "../styling/STPcss";
+import { Link, RouteComponentProps} from "react-router-dom";
 import { fetchObjectData } from "../helper";
 import Button from "../components/button";
 import Header from "../components/header";
-import { beigeBg, yellowBg } from "../css";
+import { beigeBg, yellowBg } from "../styling/css";
 import Card from "../components/card";
 
 interface Props {
@@ -39,7 +40,6 @@ export default class StartPage extends React.Component<Props, State> {
    */
   getRandomArray() {
     let randomNumber = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    console.log(randomNumber);
 
     const alt1: string[] = [
       "SK-A-2860",

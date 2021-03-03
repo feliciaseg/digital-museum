@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import Header from "../components/header";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import Card from "../components/card";
-import { blackBg, orangeTxt, yellowBg } from "../css";
+import { blackBg, orangeTxt, yellowBg } from "../styling/css";
 import Button from "../components/button";
 
 interface MatchParams {
@@ -53,22 +53,15 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       if (i === 6) {
         break;
       }
-      let artist: string = this.state.APIdata.artObjects[i]
-        .principalOrFirstMaker;
+      let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
-      let fontsize;
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={{
-            pathname: `/artwork/${objectNumber}`,
-          }}
-          key={i}
-        >
-          {/* <div style={cardContainer}> */}
+          to={{pathname: `/artwork/${objectNumber}`}}
+          key={i}>
           <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
-          {/* </div> */}
         </Link>
       );
     }
@@ -79,9 +72,10 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    await this.setState({ inputValue: this.state.newSearch });
-    await this.fetchData();
-    this.render();
+    console.log("how many times is it clicked")
+    // await this.setState({ inputValue: this.state.newSearch });
+    // await this.fetchData();
+    // this.render();
   }
 
   /** Checks current width and renders so that it fits. */
@@ -91,7 +85,9 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
+
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -125,12 +121,12 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                     style={{ ...blackBg, ...inputL }}
                     type="text"
                   />
-                  <Link
+                  {/* <Link
                     style={{ textDecoration: "none" }}
                     to={{
                       pathname: `/search/${this.state.newSearch}`,
                     }}
-                  >
+                  > */}
                     <Button
                       type="search"
                       text="SEARCH"
@@ -139,7 +135,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                       fontSize={1.5}
                       onClick={this.handleButtonClick}
                     />
-                  </Link>
+                  {/* </Link> */}
                 </div>
                 <div style={textL}>
                   <p style={{ margin: 0 }}>
@@ -171,7 +167,9 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
+
               <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -415,19 +413,6 @@ const inputL: CSSProperties = {
   fontWeight: 700,
   fontSize: "1.5rem",
   padding: 0,
-};
-
-const inputM: CSSProperties = {
-  outline: "none",
-  border: 3,
-  borderStyle: "solid",
-  borderColor: "#FF9C5B",
-  height: "3.4rem",
-  width: "25rem",
-  color: "#FF9C5B",
-  fontWeight: 700,
-  fontSize: "1.5rem",
-  paddingBottom: 0,
 };
 
 const inputS: CSSProperties = {
