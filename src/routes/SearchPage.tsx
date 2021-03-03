@@ -85,7 +85,9 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
-              <Header h="8.375rem" c="#009ad1" />
+
+              <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -109,7 +111,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
             </div>
           ) : (
             <>
-              <Header h="8.375rem" c="#009ad1" />
+              <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
               <div style={{ ...searchContainerL, ...blackBg }}>
                 <div style={searchL}>
                   <input
@@ -165,7 +167,9 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
-              <Header h="8.375rem" c="#009ad1" />
+
+              <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
+
               <div
                 style={{
                   ...blackBg,
@@ -189,7 +193,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
             </div>
           ) : (
             <>
-              <Header h="8.375rem" c="#009ad1" />
+              <Header h="8.375rem" c="#009ad1" windowWidth={this.props.width} />
               <div style={{ ...searchContainerM, ...blackBg }}>
                 <div style={searchM}>
                   <input
@@ -245,7 +249,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
         <>
           {this.state.loading ? (
             <div>
-              <Header h="5.3rem" c="#009ad1" />
+              <Header h="5.3rem" c="#009ad1" windowWidth={this.props.width} />
               <div
                 style={{
                   ...blackBg,
@@ -269,7 +273,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
             </div>
           ) : (
             <>
-              <Header h="5.3rem" c="#009ad1" />
+              <Header h="5.3rem" c="#009ad1" windowWidth={this.props.width} />
               <div style={{ ...searchContainerS, ...blackBg }}>
                 <div style={searchS}>
                   <input

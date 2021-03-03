@@ -49,6 +49,15 @@
       * {
         box-sizing: border-box;
       }
+
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
     </style>
   </head>
   <body>

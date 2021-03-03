@@ -1,4 +1,5 @@
 import React from "react";
+
 import * as css from "../styling/STPcss";
 import { Link, RouteComponentProps} from "react-router-dom";
 import { fetchObjectData } from "../helper";
@@ -108,28 +109,25 @@ export default class StartPage extends React.Component<Props, State> {
   }
 
   render() {
-
     if (this.props.width > 1023) {
       return (
         <>
           {this.state.loading ? (
             <>
-              <Header h="16rem" c="#FF9C5B" />
+              <Header h="16rem" c="#FF9C5B" windowWidth={this.props.width} />
               <div style={css.landingContainerL}>
                 <h2 style={css.h3L}>
                   EXPLORE THE <br />
                   DIGITAL MUSEUM
                 </h2>
-                <p style={css.pL}>
-                  Loading...
-                </p>
+                <p style={css.pL}>Loading...</p>
               </div>
-              <div style={{ ...yellowBg, ...css.yellowBoxL }} />
+              <div style={{ ...yellowBg, height: "100%" }} />
             </>
           ) : (
             <>
               <>
-                <Header h="16rem" c="#FF9C5B" />
+                <Header h="16rem" c="#FF9C5B" windowWidth={this.props.width} />
                 <div style={css.landingContainerL}>
                   <h2 style={css.h3L}>
                     EXPLORE THE <br />
@@ -168,7 +166,7 @@ export default class StartPage extends React.Component<Props, State> {
               <div style={{ ...beigeBg, ...css.containerL }}>
                 <h2 style={css.h2L}>SOME OF OUR COLLECTIONS</h2>
 
-                <div style={css.cardWrapperL}>
+                <div style={css.cardWrapperL} className="no-scrollbar">
                   <div style={css.cardContainerL}>
                     <Link
                       style={{ textDecoration: "none", color: "inherit" }}
@@ -235,30 +233,25 @@ export default class StartPage extends React.Component<Props, State> {
           )}
         </>
       );
-
     } else if (this.props.width > 767) {
-
       return (
         <>
           {this.state.loading ? (
             <>
-              <Header h="11rem" c="#FF9C5B" />
+              <Header h="11rem" c="#FF9C5B" windowWidth={this.props.width} />
               <div style={css.landingContainerM}>
                 <h2 style={css.h3M}>
                   EXPLORE THE <br />
                   DIGITAL MUSEUM
                 </h2>
-                <p style={css.pM}>
-                Loading...
-                </p>
+                <p style={css.pM}>Loading...</p>
               </div>
-              <div style={{ ...yellowBg, ...css.yellowBoxM, height: "100%"}} />
-
+              <div style={{ ...yellowBg, height: "100%" }} />
             </>
           ) : (
             <>
               <>
-                <Header h="11rem" c="#FF9C5B" />
+                <Header h="11rem" c="#FF9C5B" windowWidth={this.props.width} />
                 <div style={css.landingContainerM}>
                   <h2 style={css.h3M}>
                     EXPLORE THE <br />
@@ -297,7 +290,7 @@ export default class StartPage extends React.Component<Props, State> {
               <div style={{ ...beigeBg, ...css.containerM }}>
                 <h2 style={css.h2M}>SOME OF OUR COLLECTIONS</h2>
 
-                <div style={css.cardWrapperM}>
+                <div style={css.cardWrapperM} className="no-scrollbar">
                   <div style={css.cardContainerM}>
                     <Link
                       style={{ textDecoration: "none", color: "inherit" }}
@@ -369,24 +362,25 @@ export default class StartPage extends React.Component<Props, State> {
         <>
           {this.state.loading ? (
             <>
-              <Header h="7.75rem" c="#FF9C5B" />
+              <Header h="7.75rem" c="#FF9C5B" windowWidth={this.props.width} />
               <div style={css.landingContainerS}>
                 <h2 style={css.h3S}>
                   EXPLORE THE <br />
                   DIGITAL MUSEUM
                 </h2>
-                <p style={css.pS}>
-                Loading...
-                </p>
+                <p style={css.pS}>Loading...</p>
               </div>
 
-              <div style={{ ...yellowBg, ...css.yellowBoxS, height: "100%"}} />
-
+              <div style={{ ...yellowBg, height: "100%" }} />
             </>
           ) : (
             <>
               <>
-                <Header h="7.75rem" c="#FF9C5B" />
+                <Header
+                  h="7.75rem"
+                  c="#FF9C5B"
+                  windowWidth={this.props.width}
+                />
                 <div style={css.landingContainerS}>
                   <h2 style={css.h3S}>
                     EXPLORE THE <br />
@@ -425,7 +419,7 @@ export default class StartPage extends React.Component<Props, State> {
               <div style={{ ...beigeBg, ...css.containerS }}>
                 <h2 style={css.h2S}>SOME OF OUR COLLECTIONS</h2>
 
-                <div style={css.cardWrapperS}>
+                <div style={css.cardWrapperS} className="no-scrollbar">
                   <div style={css.cardContainerS}>
                     <Link
                       style={{ textDecoration: "none", color: "inherit" }}
