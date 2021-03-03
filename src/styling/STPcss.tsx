@@ -175,7 +175,7 @@ export const containerS: CSSProperties = {
 };
 
 export const cardContainerL: CSSProperties = {
-  width: 488, //Can't be written in rem for some reason
+  width: 488, 
   height: "42.5rem",
   flex: "0 0 auto",
   marginRight: "2.3rem",
@@ -184,18 +184,17 @@ export const cardContainerL: CSSProperties = {
 };
 
 export const cardContainerM: CSSProperties = {
-  width: 420, //Can't be written in rem for some reason
+  width: 420, 
   height: "25rem",
   flex: "0 0 auto",
   margin: "0 0 2rem 0rem"
 };
 
 export const cardContainerS: CSSProperties = {
-  width: 315, //Can't be written in rem for some reason
+  width: 315, 
   height: "22.8rem",
   flex: "0 0 auto",
   padding: "0 0 2.3rem 0rem"
-  //left: "5.9rem",
 };
 
 export const cardWrapperL: CSSProperties = {
@@ -211,7 +210,6 @@ export const cardWrapperM: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  //justifyContent: "space-around",
   padding: "0 2.5rem 1rem 2.5rem",
 };
 
@@ -242,5 +240,4 @@ export const h2S: CSSProperties = {
   fontWeight: 900,
   fontSize: "1.75rem",
   padding: "1rem 1.25rem 1rem 1.25rem",
-
 };

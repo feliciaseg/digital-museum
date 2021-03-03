@@ -39,7 +39,6 @@ export default class StartPage extends React.Component<Props, State> {
    */
   getRandomArray() {
     let randomNumber = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    console.log(randomNumber);
 
     const alt1: string[] = [
       "SK-A-2860",
@@ -111,7 +110,6 @@ export default class StartPage extends React.Component<Props, State> {
   render() {
 
     if (this.props.width > 1023) {
-
       return (
         <>
           {this.state.loading ? (

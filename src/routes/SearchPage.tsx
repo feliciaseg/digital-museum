@@ -16,7 +16,7 @@ interface Props extends RouteComponentProps<MatchParams> {
 interface State {
   inputValue: string;
   loading: boolean;
-  APIdata: any; 
+  APIdata: any;
   newSearch: string;
 }
 
@@ -53,21 +53,15 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
       if (i === 6) {
         break;
       }
-      let artist: string = this.state.APIdata.artObjects[i]
-        .principalOrFirstMaker;
+      let artist: string = this.state.APIdata.artObjects[i].principalOrFirstMaker;
       let image: string = this.state.APIdata.artObjects[i].headerImage.url;
       let objectNumber: string = this.state.APIdata.artObjects[i].objectNumber;
       cards.push(
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={{
-            pathname: `/artwork/${objectNumber}`,
-          }}
-          key={i}
-        >
-          {/* <div style={cardContainer}> */}
+          to={{pathname: `/artwork/${objectNumber}`}}
+          key={i}>
           <Card color="orange" fontSize={2} title={artist} imgSrc={image} />
-          {/* </div> */}
         </Link>
       );
     }
@@ -78,9 +72,10 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    await this.setState({ inputValue: this.state.newSearch });
-    await this.fetchData();
-    this.render();
+    console.log("how many times is it clicked")
+    // await this.setState({ inputValue: this.state.newSearch });
+    // await this.fetchData();
+    // this.render();
   }
 
   /** Checks current width and renders so that it fits. */
@@ -91,10 +86,26 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" />
-              <div style={{...blackBg, position: "absolute", top: "8.375rem", width: "100%", height: "100%"  }}>
-                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
+              <div
+                style={{
+                  ...blackBg,
+                  position: "absolute",
+                  top: "8.375rem",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <p
+                  style={{
+                    ...orangeTxt,
+                    textAlign: "center",
+                    fontSize: "2rem",
+                  }}
+                >
+                  {" "}
+                  Loading....
+                </p>
               </div>
-              
             </div>
           ) : (
             <>
@@ -108,12 +119,12 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                     style={{ ...blackBg, ...inputL }}
                     type="text"
                   />
-                  <Link
+                  {/* <Link
                     style={{ textDecoration: "none" }}
                     to={{
                       pathname: `/search/${this.state.newSearch}`,
                     }}
-                  >
+                  > */}
                     <Button
                       type="search"
                       text="SEARCH"
@@ -122,7 +133,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                       fontSize={1.5}
                       onClick={this.handleButtonClick}
                     />
-                  </Link>
+                  {/* </Link> */}
                 </div>
                 <div style={textL}>
                   <p style={{ margin: 0 }}>
@@ -155,8 +166,25 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" />
-              <div style={{...blackBg, position: "absolute", top: "8.375rem", width: "100%", height: "100%"  }}>
-                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
+              <div
+                style={{
+                  ...blackBg,
+                  position: "absolute",
+                  top: "8.375rem",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <p
+                  style={{
+                    ...orangeTxt,
+                    textAlign: "center",
+                    fontSize: "2rem",
+                  }}
+                >
+                  {" "}
+                  Loading....
+                </p>
               </div>
             </div>
           ) : (
@@ -218,8 +246,25 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="5.3rem" c="#009ad1" />
-              <div style={{...blackBg, position: "absolute", top: "5.3rem", width: "100%", height: "100%"  }}>
-                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
+              <div
+                style={{
+                  ...blackBg,
+                  position: "absolute",
+                  top: "5.3rem",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <p
+                  style={{
+                    ...orangeTxt,
+                    textAlign: "center",
+                    fontSize: "2rem",
+                  }}
+                >
+                  {" "}
+                  Loading....
+                </p>
               </div>
             </div>
           ) : (
@@ -279,7 +324,6 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
   }
 }
 
-
 const container: CSSProperties = {
   display: "grid",
   width: "100%",
@@ -328,7 +372,7 @@ const searchContainerS: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   //alignItems: "center",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 };
 
 const searchL: CSSProperties = {
@@ -366,7 +410,6 @@ const inputL: CSSProperties = {
   fontSize: "1.5rem",
   padding: 0,
 };
-
 
 const inputS: CSSProperties = {
   outline: "none",
@@ -409,7 +452,7 @@ const textS: CSSProperties = {
   fontWeight: 700,
   fontSize: "0.8rem",
   paddingTop: "1rem",
-  width: "17.25rem"
+  width: "17.25rem",
 };
 
 export default withRouter(SearchPage);

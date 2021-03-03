@@ -2,9 +2,7 @@ import { CSSProperties } from "react";
 import * as css from "../styling/css";
 import { translateColor } from "../helper";
 
-/* Behöver ta in en bild som en prop också */
 export default function Card(props: Props) {
-  // const imageSrc = "../assets/testImg.jpg";
   const imageSrc = props.imgSrc;
   const backgroundColor = translateColor(props.color);
 
