@@ -16,7 +16,7 @@ interface Props extends RouteComponentProps<MatchParams> {
 interface State {
   inputValue: string;
   loading: boolean;
-  APIdata: any; // Kan man sätta en typ här?
+  APIdata: any; 
   newSearch: string;
 }
 
@@ -46,7 +46,6 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
 
   /**
    * Create cards depending on the number of objects of the search, but never more than six.
-   * FONTSIZE ändrad pga att vissa konstnärers namn är väldigt långt.....
    */
   createCards() {
     let cards: JSX.Element[] = [];
@@ -80,23 +79,23 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    //this.setState({loading: true})
     await this.setState({ inputValue: this.state.newSearch });
     await this.fetchData();
     this.render();
   }
 
+  /** Checks current width and renders so that it fits. */
   render() {
-    //console.log("search: " + this.props.width);
     if (this.props.width > 1023) {
       return (
         <>
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" />
-              <div style={{ ...searchContainerL, ...blackBg }}>
-                <p style={orangeTxt}> Loading....</p>
+              <div style={{...blackBg, position: "absolute", top: "8.375rem", width: "100%", height: "100%"  }}>
+                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
               </div>
+              
             </div>
           ) : (
             <>
@@ -129,7 +128,7 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
                 <div style={textL}>
                   <p style={{ margin: 0 }}>
                     {" "}
-                    SEARCH RESULTS FOR "{this.state.inputValue.toUpperCase()}"{" "}
+                    SEARCH RESULTS FOR "{this.state.inputValue}"{" "}
                   </p>
                   <p style={{ margin: 0 }}>
                     {" "}
@@ -157,8 +156,8 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="8.375rem" c="#009ad1" />
-              <div style={{ ...searchContainerM, ...blackBg }}>
-                <p style={orangeTxt}> Loading....</p>
+              <div style={{...blackBg, position: "absolute", top: "8.375rem", width: "100%", height: "100%"  }}>
+                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
               </div>
             </div>
           ) : (
@@ -220,8 +219,8 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
           {this.state.loading ? (
             <div>
               <Header h="5.3rem" c="#009ad1" />
-              <div style={{ ...searchContainerL, ...blackBg }}>
-                <p style={orangeTxt}> Loading....</p>
+              <div style={{...blackBg, position: "absolute", top: "5.3rem", width: "100%", height: "100%"  }}>
+                <p style={{...orangeTxt, textAlign: "center", fontSize: "2rem"}}> Loading....</p>
               </div>
             </div>
           ) : (
@@ -302,9 +301,6 @@ const containerS: CSSProperties = {
   padding: "1rem 1rem 5.2rem 1rem ",
 };
 
-
-
-
 const searchContainerL: CSSProperties = {
   flex: 1,
   height: 255,
@@ -329,10 +325,10 @@ const searchContainerM: CSSProperties = {
 const searchContainerS: CSSProperties = {
   //flex: 1,
   height: "auto",
-  padding: "1rem 1rem 1rem 1rem",
+  padding: "1rem 1.25rem 1rem 1.25rem",
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  //alignItems: "center",
   justifyContent: "space-between"
 };
 
@@ -391,7 +387,7 @@ const inputS: CSSProperties = {
   borderStyle: "solid",
   borderColor: "#FF9C5B",
   height: "1.7rem",
-  width: "17rem",
+  //width: "17rem",
   color: "#FF9C5B",
   fontWeight: 700,
   fontSize: "0.8rem",

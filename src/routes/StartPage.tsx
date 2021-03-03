@@ -109,7 +109,7 @@ export default class StartPage extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.props.width > 1024) {
+    if (this.props.width > 1023) {
       return (
         <>
           {this.state.loading ? (
@@ -235,7 +235,7 @@ export default class StartPage extends React.Component<Props, State> {
           )}
         </>
       );
-    } else if (this.props.width > 768) {
+    } else if (this.props.width > 767) {
       return (
         <>
           {this.state.loading ? (
@@ -250,7 +250,7 @@ export default class StartPage extends React.Component<Props, State> {
                 Loading...
                 </p>
               </div>
-              <div style={{ ...yellowBg, ...css.yellowBoxM }} />
+              <div style={{ ...yellowBg, ...css.yellowBoxM, height: "100%"}} />
             </>
           ) : (
             <>
@@ -376,7 +376,7 @@ export default class StartPage extends React.Component<Props, State> {
                 Loading...
                 </p>
               </div>
-              <div style={{ ...yellowBg, ...css.yellowBoxS }} />
+              <div style={{ ...yellowBg, ...css.yellowBoxS, height: "100%"}} />
             </>
           ) : (
             <>

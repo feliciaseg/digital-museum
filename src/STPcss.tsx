@@ -36,7 +36,7 @@ export const h3M: CSSProperties = {
 export const h3S: CSSProperties = {
   margin: 0,
   fontSize: "2.25rem",
-  padding: "0 2.9rem 0 0rem",
+  padding: "0 0rem 0 0rem",
   lineHeight: 1.2,
   fontWeight: 900,
   color: "#262730",
@@ -108,7 +108,7 @@ export const inputS: CSSProperties = {
   fontWeight: 300,
   fontSize: "0.8rem",
   padding: 0,
-  marginBottom: "1rem",
+  marginBottom: "0.9rem",
 };
 
 export const pL: CSSProperties = {
@@ -143,7 +143,7 @@ export const searchM: CSSProperties = {
 export const searchS: CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
 };
 
 /* ----- COLLECTION CSS ----- */
@@ -239,5 +239,5 @@ export const h2S: CSSProperties = {
   margin: 0,
   fontWeight: 900,
   fontSize: "1.75rem",
-  padding: "1rem 1.25rem 1rem 4.2rem",
+  padding: "1rem 1.25rem 1rem 1.25rem",
 };
