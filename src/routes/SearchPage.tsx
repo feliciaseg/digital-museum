@@ -74,10 +74,9 @@ class SearchPage extends React.Component<Props & RouteComponentProps, State> {
    * Updates the inputValue to the new search
    */
   async handleButtonClick() {
-    console.log("how many times is it clicked");
-    // await this.setState({ inputValue: this.state.newSearch });
-    // await this.fetchData();
-    // this.render();
+    await this.setState({ inputValue: this.state.newSearch });
+    await this.fetchData();
+    this.render();
   }
 
   /** Checks current width and renders so that it fits. */
